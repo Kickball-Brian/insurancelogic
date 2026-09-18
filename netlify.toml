@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ── Draft site: keep this out of search results until content/imagery/domain
+# are finalized. Remove this [[headers]] block when cutting over to production.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# ── SPA fallback — React Router needs every path served as index.html ────────
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
