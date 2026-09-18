@@ -1,16 +1,47 @@
-# React + Vite
+# Insurance Logic Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite marketing site for Insurance Logic, built from the Law Logic
+Website Rework template. Full-service marketing platform positioning for
+independent insurance agents and agencies.
 
-Currently, two official plugins are available:
+## Develop
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```
+npm install
+npm run dev
+```
 
-## React Compiler
+## Pages
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `/` — Home
+- `/services` — Full-service platform, routing, criteria, multi-product monetization
+- `/verticals` — All nine insurance verticals (Final Expense, Medicare, Life, Annuity*, Home, Mortgage Protection, Auto & Commercial Auto, GAP, Umbrella) — *Annuity flagged "Launching Soon"
+- `/team` — Leadership team
+- `/compliance` — TCPA/DNC and carrier-compliance framework
+- `/contact` — Contact info
 
-## Expanding the ESLint configuration
+## Known gaps / next steps
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Logo**: No designed lockup exists yet. `src/components/Logo.jsx` draws a
+  code-based wordmark (shared triangle mark + "Insurance Logic" text) as a
+  placeholder — swap in a real logo file when one's designed.
+- **Joey**: Left off the team page pending his confirmation and headshot
+  (he was at a wedding when this draft was built). Add him to the `team`
+  array in `src/pages/TeamPage.jsx` once confirmed.
+- **Mark Muzzini's photo**: Reused his existing headshot from the Email
+  Agency site — notes say it "stands out poorly." Swap
+  `public/images/team/mark-muzzini.webp` once a better one is taken.
+- **Imagery**: No insurance-specific photography yet. Heroes and process
+  steps use icon/gradient treatments instead of photos by design — replace
+  with real photography as it becomes available.
+- **Contact form**: No live campaign/affiliate code exists for this vertical
+  yet, so `/contact` shows a mailto CTA instead of the embedded lead form
+  used on lawlogic.law. Wire up the real form once a campaign code exists.
+- **Domain & indexing**: `insurancelogic.com` is a placeholder in
+  `index.html` / `usePageMeta.js` / `netlify.toml`. The whole site is
+  currently `noindex, nofollow` (see `netlify.toml` and
+  `public/robots.txt`) until it's ready to go live — update both when
+  cutting over to production.
+- **Analytics**: PostHog was intentionally left out (no Insurance Logic
+  project key yet). Add `posthog-js` back in `src/main.jsx` / `src/App.jsx`
+  the same way `lawlogic-rework` does once a key exists.
