@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender.mjs",
+    "build": "npx puppeteer browsers install chrome && vite build && node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
