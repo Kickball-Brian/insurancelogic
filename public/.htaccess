@@ -1,9 +1,31 @@
 Options -MultiViews
 RewriteEngine On
 RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.html [L]
+
+# Only the actual routes from src/App.jsx get a fallback (so a direct visit
+# or refresh on e.g. /contact doesn't 404). This used to be a blanket
+# "anything that isn't a real file" rewrite to plain index.html, which meant
+# a genuinely broken URL got served the SPA shell with an HTTP 200 —
+# indistinguishable, to any crawler or tool that doesn't render JS, from a
+# real page. See docs/crawlability-prerendering-fix.md. / itself needs no
+# entry — dist/index.html IS the prerendered homepage (npm run build runs
+# scripts/prerender.mjs after vite build), a real file Apache serves
+# directly without hitting rewrite rules at all.
+RewriteRule ^services/?$ /prerendered/services.html [L]
+RewriteRule ^verticals/?$ /prerendered/verticals.html [L]
+RewriteRule ^team/?$ /prerendered/team.html [L]
+RewriteRule ^compliance/?$ /prerendered/compliance.html [L]
+RewriteRule ^contact/?$ /prerendered/contact.html [L]
+
+# Anything not matched above (a typo, an old link, a bot probing random
+# paths) hits Apache's normal file-not-found handling. ErrorDocument swaps
+# in a real, prerendered NotFoundPage as the response body — NOT
+# /index.html, which is now the prerendered *homepage* (overwritten by
+# scripts/prerender.mjs) rather than a neutral shell; pointing 404s there
+# would serve homepage content stamped with a 404 status, which is worse
+# for a non-JS crawler than no prerendering at all. dist/404.html is
+# prerendered separately for exactly this. Status stays 404, not 200.
+ErrorDocument 404 /404.html
 
 # Cache-Control headers
 <IfModule mod_expires.c>

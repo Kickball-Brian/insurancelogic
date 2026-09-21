@@ -12,7 +12,41 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
 
-# ── SPA fallback — React Router needs every path served as index.html ────────
+# ── Real routes → their own prerendered file ─────────────────────────────────
+# See docs/crawlability-prerendering-fix.md — npm run build now runs
+# scripts/prerender.mjs after vite build, so these paths exist as real files
+# in dist/prerendered/ with actual page content, not just the bare SPA
+# shell. Netlify checks for a matching real file before applying redirects,
+# but these still need to be explicit since e.g. /services isn't a literal
+# file without the /prerendered/ prefix and .html extension.
+[[redirects]]
+  from = "/services"
+  to = "/prerendered/services.html"
+  status = 200
+[[redirects]]
+  from = "/verticals"
+  to = "/prerendered/verticals.html"
+  status = 200
+[[redirects]]
+  from = "/team"
+  to = "/prerendered/team.html"
+  status = 200
+[[redirects]]
+  from = "/compliance"
+  to = "/prerendered/compliance.html"
+  status = 200
+[[redirects]]
+  from = "/contact"
+  to = "/prerendered/contact.html"
+  status = 200
+
+# ── SPA fallback for everything else ─────────────────────────────────────────
+# / needs no entry — dist/index.html IS the prerendered homepage after the
+# build step above. Genuinely unknown paths still get index.html at 200
+# here (Netlify's redirect model doesn't have an Apache-style ErrorDocument
+# equivalent that preserves a 404 status the same way) — status honesty for
+# broken URLs is a production/Apache-only property via public/.htaccess;
+# this file governs staging, which is already noindexed above.
 [[redirects]]
   from = "/*"
   to = "/index.html"
