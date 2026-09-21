@@ -92,9 +92,8 @@ const port = 4321
 const baseUrl = `http://localhost:${port}`
 
 // Every real route from App.jsx except / (special-cased — overwrites
-// dist/index.html directly) and the catch-all (no static file needed once
-// .htaccess's fallback is scoped to real routes with ErrorDocument 404 for
-// everything else — see step 4).
+// dist/index.html directly) and the catch-all (a real 404 page is
+// prerendered separately below, not listed here).
 const routes = [
   '/',
   '/services',
@@ -162,17 +161,40 @@ async function main() {
         else req.continue()
       })
 
-      for (const route of routes) {
-        const url = `${baseUrl}${route}`
-        await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 })
-        await new Promise((r) => setTimeout(r, 400))
-        const html = await page.content()
+      const capture = async (path) => {
+        const url = `${baseUrl}${path}`
+        // 'load' rather than 'networkidle0' — any embed that keeps a
+        // background connection open (video, iframe, analytics beacon)
+        // would make networkidle0 hang until timeout (hit this exact
+        // issue on the LawLogic project's YouTube-embedding page). 'load'
+        // fires once the page's own synchronous resources are done; the
+        // extra wait below covers React's render + effects settling
+        // afterward.
+        await page.goto(url, { waitUntil: 'load', timeout: 30000 })
+        await new Promise((r) => setTimeout(r, 800))
+        return page.content()
+      }
 
+      for (const route of routes) {
+        const html = await capture(route)
         const outPath = outputPathFor(route)
         await mkdir(dirname(outPath), { recursive: true })
         await writeFile(outPath, html)
         console.log(`[prerender] ${route} -> ${outPath.replace(root + '/', '')} (${(html.length / 1024).toFixed(0)}KB)`)
       }
+
+      // dist/index.html is now the prerendered HOMEPAGE (route '/' above
+      // overwrote it), not a neutral shell — so it can't double as the
+      // ErrorDocument 404 target the way the bare Vite output could.
+      // Pointing ErrorDocument there would serve a 404 status with the
+      // *homepage's* content as the body, which is worse than not
+      // prerendering at all. Capture React Router's actual catch-all/
+      // NotFound state (any path with no matching route renders it) and
+      // ship that as its own file instead.
+      const notFoundHtml = await capture('/__prerender_404_check__')
+      const notFoundPath = join(distDir, '404.html')
+      await writeFile(notFoundPath, notFoundHtml)
+      console.log(`[prerender] 404 -> dist/404.html (${(notFoundHtml.length / 1024).toFixed(0)}KB)`)
     } finally {
       await browser.close()
     }
@@ -182,15 +204,14 @@ async function main() {
 
   // Sanity check: a route that errors client-side shouldn't silently ship
   // an empty page as "prerendered".
-  for (const route of routes) {
-    const outPath = outputPathFor(route)
+  for (const outPath of [...routes.map(outputPathFor), join(distDir, '404.html')]) {
     const html = await readFile(outPath, 'utf-8')
     if (!html.includes('<h1')) {
-      throw new Error(`[prerender] ${route} has no <h1> in its captured HTML — likely failed to render. Output saved to ${outPath} for inspection.`)
+      throw new Error(`[prerender] ${outPath.replace(root + '/', '')} has no <h1> in its captured HTML — likely failed to render. Output saved to ${outPath} for inspection.`)
     }
   }
 
-  console.log(`[prerender] done — ${routes.length} routes prerendered`)
+  console.log(`[prerender] done — ${routes.length} routes + 404 prerendered`)
 }
 
 main().catch((err) => {
@@ -230,10 +251,14 @@ RewriteRule ^compliance/?$ /prerendered/compliance.html [L]
 RewriteRule ^contact/?$ /prerendered/contact.html [L]
 
 # Anything not matched above (typo, old link, bot probing) hits Apache's
-# normal file-not-found handling. ErrorDocument swaps in the SPA shell as
-# the response body (React Router's own catch-all still renders whatever
-# 404 page this app has) but keeps the actual HTTP status as 404, not 200.
-ErrorDocument 404 /index.html
+# normal file-not-found handling. ErrorDocument swaps in a real,
+# prerendered NotFoundPage as the response body — NOT /index.html, which
+# is now the prerendered *homepage*; pointing 404s there would serve
+# homepage content stamped with a 404 status, worse for a non-JS crawler
+# than no prerendering at all. dist/404.html is prerendered separately
+# for exactly this (see step 2's `capture('/__prerender_404_check__')`).
+# Status stays 404, not 200.
+ErrorDocument 404 /404.html
 ```
 
 **Verify this against a real local Apache instance before shipping it** —
@@ -255,17 +280,40 @@ app's real 404 page (`curl <url> | grep <marker text from your 404 page>`).
 `/Users/...` — if that happens, copy `dist/` to somewhere under `/tmp`
 first and point `DocumentRoot` there instead.
 
-## Step 5 — mirror the redirect/fallback logic in netlify.toml
+## Step 5 — mirror the routing in netlify.toml
 
 This project is currently noindexed on staging (`X-Robots-Tag: noindex,
 nofollow` in `netlify.toml`) — **leave that header alone**, it's correct
-for a pre-launch site. But `netlify.toml`'s SPA fallback (`/* -> /index.html
-status = 200`) has the same soft-404 issue, and it's worth fixing now so it
-doesn't need remembering again right before go-live. Whenever `.htaccess`
-changes here, revisit `netlify.toml` in the same pass — they're separate
-files that can silently drift apart (this happened on ea-rework: a
-retirement redirect landed in `.htaccess` only, and staging had no
-equivalent for weeks before anyone noticed).
+for a pre-launch site. But add explicit per-route redirects here too,
+mirroring `.htaccess`'s allowlist — Netlify checks for a matching real
+file before applying redirects, but these still need to be explicit since
+none of the real routes are literal files without the `/prerendered/`
+prefix and `.html` extension:
+
+```toml
+[[redirects]]
+  from = "/services"
+  to = "/prerendered/services.html"
+  status = 200
+# ...one per route, same list as .htaccess...
+
+# / needs no entry — dist/index.html IS the prerendered homepage.
+# Netlify's redirect model has no Apache-style ErrorDocument that
+# preserves a 404 status the same way, so unknown paths still get
+# index.html at 200 here — that's fine, staging is noindexed above.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+Revisit both `.htaccess` and `netlify.toml` together whenever either
+changes — they're separate files that can silently drift apart (this
+happened on ea-rework: a retirement redirect landed in `.htaccess` only,
+and staging had no equivalent for weeks before anyone noticed; separately,
+ea-rework's `netlify.toml` never got the prerendered-file routing at all
+until caught during this same fix on a later project, so staging there
+served the bare SPA shell for a while even after production was fixed).
 
 ## Step 6 — fix the nav overlay
 
