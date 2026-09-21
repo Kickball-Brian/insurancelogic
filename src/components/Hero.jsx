@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import HalftoneDots from './HalftoneDots'
+import DotLens from './DotLens'
 import MagneticBtn from './MagneticBtn'
 
 const WORDS = [
@@ -17,8 +18,8 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      {/* Halftone dot clusters */}
-      <HalftoneDots position="tr" size="xl" density="md" opacity="normal" speed={0.3} style={{ zIndex: 0 }} rotate="-8deg" />
+      {/* Cursor-follow halftone lens — dots magnify under the cursor, like sandeep.design's hero */}
+      <DotLens className="hero-dot-lens" color="#9B1B30" />
       <HalftoneDots position="bl" size="lg" density="sm" opacity="faint" speed={0.15} style={{ zIndex: 0 }} rotate="6deg" />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
