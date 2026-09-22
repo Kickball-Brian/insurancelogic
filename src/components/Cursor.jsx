@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react'
 
-// Sections/panels with a dark background — the plain red mark loses contrast
-// there, so the cursor swaps to a white circle with a white mark instead.
-const DARK_BG_SELECTOR = '.section-dark, .footer, .nav-overlay-panel'
+// Sections, panels, buttons, and cards with a dark (crimson or near-black)
+// background — the plain red mark loses contrast there, so the cursor
+// swaps to a white circle with a white mark instead. .btn-primary is dark
+// at rest; .service-card is only dark on hover (via its own :hover rule),
+// which is exactly when this fires for it — no need for a :hover selector.
+const DARK_BG_SELECTOR = '.section-dark, .footer, .nav-overlay-panel, .btn-primary, .service-card'
 
 export default function Cursor() {
   const dotRef  = useRef(null)
