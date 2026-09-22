@@ -1,8 +1,13 @@
 import { useEffect, useRef } from 'react'
 
+// Sections/panels with a dark background — the plain red mark loses contrast
+// there, so the cursor swaps to a white circle with a white mark instead.
+const DARK_BG_SELECTOR = '.section-dark, .footer, .nav-overlay-panel'
+
 export default function Cursor() {
   const dotRef  = useRef(null)
   const ringRef = useRef(null)
+  const imgRef  = useRef(null)
 
   useEffect(() => {
     // Only activate on devices with a fine pointer (mouse, not touch)
@@ -10,6 +15,7 @@ export default function Cursor() {
 
     const dot  = dotRef.current
     const ring = ringRef.current
+    const img  = imgRef.current
     let mx = -200, my = -200
     let rx = -200, ry = -200
     let raf
@@ -30,13 +36,21 @@ export default function Cursor() {
 
     // Event delegation for hover state — catches dynamically added elements too
     const onOver = (e) => {
-      if (e.target.closest('a, button, [role="button"], .episode-card, .service-card, .project-card, .hcard, label')) {
+      if (e.target.closest('a, button, [role="button"], .service-card, label')) {
         document.body.classList.add('cursor-hover')
+      }
+      if (e.target.closest(DARK_BG_SELECTOR)) {
+        document.body.classList.add('cursor-on-dark')
+        img.src = '/images/cursor-mark-white.svg'
       }
     }
     const onOut = (e) => {
-      if (!e.relatedTarget?.closest('a, button, [role="button"], .episode-card, .service-card, .project-card, .hcard, label')) {
+      if (!e.relatedTarget?.closest('a, button, [role="button"], .service-card, label')) {
         document.body.classList.remove('cursor-hover')
+      }
+      if (!e.relatedTarget?.closest(DARK_BG_SELECTOR)) {
+        document.body.classList.remove('cursor-on-dark')
+        img.src = '/favicon.svg'
       }
     }
 
@@ -49,14 +63,15 @@ export default function Cursor() {
       document.removeEventListener('mousemove', onMove)
       document.removeEventListener('mouseover', onOver)
       document.removeEventListener('mouseout', onOut)
-      document.body.classList.remove('cursor-hover')
+      document.body.classList.remove('cursor-hover', 'cursor-on-dark')
     }
   }, [])
 
   return (
     <>
       <div ref={dotRef} className="cursor-dot" aria-hidden="true">
-        <img src="/favicon.svg" alt="" draggable="false" />
+        <span className="cursor-dot-bg" />
+        <img ref={imgRef} src="/favicon.svg" alt="" draggable="false" />
       </div>
       <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
     </>

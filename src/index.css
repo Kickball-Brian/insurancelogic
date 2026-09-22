@@ -90,17 +90,39 @@ body::after {
     position: fixed;
     top: 0; left: 0;
     width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
     pointer-events: none;
     z-index: 10000;
     will-change: transform;
     transition: width 0.18s ease, height 0.18s ease, opacity 0.18s ease;
   }
+  /* White backdrop circle — hidden by default, only shown over dark
+     backgrounds (.cursor-on-dark) where the plain red mark alone would
+     lose contrast. */
+  .cursor-dot-bg {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  body.cursor-on-dark .cursor-dot-bg { opacity: 1; }
   .cursor-dot img {
+    position: relative;
     width: 100%; height: 100%;
     object-fit: contain;
     display: block;
     filter: drop-shadow(0 1px 3px rgba(0,0,0,0.18));
     user-select: none;
+    transition: width 0.18s ease, height 0.18s ease, filter 0.18s ease;
+  }
+  /* Shrink the mark so it sits inside the white circle with a margin,
+     and drop the drop-shadow (it read fine on light backgrounds, but
+     looked like a dirty smudge on the flat white circle). */
+  body.cursor-on-dark .cursor-dot img {
+    width: 64%; height: 64%;
+    filter: none;
   }
 
   .cursor-ring {
