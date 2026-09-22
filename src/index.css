@@ -90,50 +90,34 @@ body::after {
     position: fixed;
     top: 0; left: 0;
     width: 22px; height: 22px;
-    display: flex; align-items: center; justify-content: center;
     pointer-events: none;
     z-index: 10000;
     will-change: transform;
     transition: width 0.18s ease, height 0.18s ease, opacity 0.18s ease;
   }
-  /* White backdrop circle — hidden by default, only shown over dark
-     backgrounds (.cursor-on-dark) where the plain red mark alone would
-     lose contrast. */
-  .cursor-dot-bg {
-    position: absolute; inset: 0;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    opacity: 0;
-    transition: opacity 0.18s ease;
-  }
-  body.cursor-on-dark .cursor-dot-bg { opacity: 1; }
   .cursor-dot img {
-    position: relative;
     width: 100%; height: 100%;
     object-fit: contain;
     display: block;
+    /* Dark drop-shadow for definition against light backgrounds — the
+       default state, mark is red. */
     filter: drop-shadow(0 1px 3px rgba(0,0,0,0.18));
     user-select: none;
-    transition: width 0.18s ease, height 0.18s ease, filter 0.18s ease;
+    transition: filter 0.2s ease;
   }
-  /* Shrink the mark so it sits inside the white circle with a margin,
-     and drop the drop-shadow (it read fine on light backgrounds, but
-     looked like a dirty smudge on the flat white circle). */
-  body.cursor-on-dark .cursor-dot img {
-    width: 64%; height: 64%;
-    filter: none;
+  /* Over a dark/crimson background (luminance check in Cursor.jsx) the mark
+     swaps to its white version — a dark drop-shadow would be invisible
+     there, so swap to a soft white glow ("halo") instead. No backdrop
+     shape, just the mark itself with a glow following its silhouette. */
+  .cursor-dot--on-dark img {
+    filter: drop-shadow(0 0 3px rgba(255,255,255,0.9)) drop-shadow(0 0 7px rgba(255,255,255,0.55));
   }
 
   .cursor-ring {
     position: fixed;
     top: 0; left: 0;
     width: 40px; height: 40px;
-    border: 1.5px solid rgba(255, 255, 255, 0.85);
-    /* Dark halo behind the white border so the ring stays visible over
-       light backgrounds too, not just dark ones — same reasoning as the
-       mark's own drop-shadow above. */
-    box-shadow: 0 0 0 1px rgba(29, 36, 45, 0.18);
+    border: 1px solid rgba(196, 30, 58, 0.4);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
@@ -142,7 +126,12 @@ body::after {
   }
 
   body.cursor-hover .cursor-dot  { width: 26px; height: 26px; }
-  body.cursor-hover .cursor-ring { width: 56px; height: 56px; border-color: #fff; }
+  body.cursor-hover .cursor-ring { width: 56px; height: 56px; border-color: rgba(196, 30, 58, 0.7); }
+
+  /* Over a dark/crimson background the default ring blends in, so switch it
+     to white instead (same luminance check drives both the mark and this). */
+  .cursor-ring.cursor-ring--on-dark { border-color: rgba(255, 255, 255, 0.6); }
+  body.cursor-hover .cursor-ring.cursor-ring--on-dark { border-color: rgba(255, 255, 255, 0.9); }
 }
 
 /* Hide cursor elements on touch devices */
