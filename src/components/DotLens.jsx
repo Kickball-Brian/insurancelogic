@@ -10,9 +10,17 @@ import { gsap } from 'gsap'
  * Canvas-based (not DOM dots) so a dense grid redraws cheaply every frame.
  * The canvas itself is pointer-events:none — the wrapper tracks the real
  * pointer so the lens still works even if something else sits on top.
+ *
+ * `hoverTarget` (a CSS selector) + `hoverColor`: when the cursor sits
+ * exactly over an element matching that selector — hit-tested for real via
+ * `elementFromPoint`, so it respects the target's actual rendered shape
+ * (e.g. an SVG path's fill), not just its bounding box — every lit dot
+ * switches to `hoverColor` instead of `color` until the cursor moves off it.
  */
 export default function DotLens({
   color = '#9B1B30',
+  hoverColor = null,
+  hoverTarget = null,
   spacing = 20,
   minRadius = 1,
   maxRadius = 5,
@@ -40,6 +48,7 @@ export default function DotLens({
     // trails slightly rather than snapping frame to frame.
     const pointer = { x: -9999, y: -9999, active: false }
     const lens = { x: -9999, y: -9999 }
+    let overTarget = false
 
     function buildDots() {
       // Plain grid, `spacing`px apart in both directions, centered in
@@ -77,6 +86,7 @@ export default function DotLens({
       // naturally produces zero effect once it's off-field — no branch
       // needed, and the exit tween's eased retreat actually shows up.
       ctx.clearRect(0, 0, width, height)
+      const fill = overTarget && hoverColor ? hoverColor : color
       for (const d of dots) {
         const dx = d.x - lens.x
         const dy = d.y - lens.y
@@ -87,7 +97,7 @@ export default function DotLens({
         const falloff = t * t // eased, 0 at the lens edge, 1 dead-center
         const radius = minRadius + (maxRadius - minRadius) * falloff
         ctx.beginPath()
-        ctx.fillStyle = color
+        ctx.fillStyle = fill
         ctx.globalAlpha = falloff // transparent at the edge, fully opaque at the cursor
         ctx.arc(d.x, d.y, radius, 0, Math.PI * 2)
         ctx.fill()
@@ -131,7 +141,7 @@ export default function DotLens({
     }
 
     // Tracked at window level (not on `wrap`) because this field sits behind
-    // sibling content — text, the stats card, buttons — that would otherwise
+    // sibling content — text, buttons, the mark — that would otherwise
     // swallow the mousemove before it ever reaches this element. Whether the
     // lens is "active" is just a bounds check against the wrapper's own rect,
     // so it still only reacts while the cursor is actually over its area.
@@ -142,6 +152,15 @@ export default function DotLens({
       const inside = x >= 0 && x <= width && y >= 0 && y <= height
       pointer.x = x
       pointer.y = y
+
+      // Real hit-test against whatever's actually rendered at the cursor's
+      // exact pixel — respects the target's real shape (e.g. an SVG path's
+      // fill), not just its bounding box. This canvas is pointer-events:none
+      // (inherited from `wrap`), so it never intercepts the hit-test itself.
+      overTarget = hoverTarget
+        ? !!document.elementFromPoint(e.clientX, e.clientY)?.closest(hoverTarget)
+        : false
+
       if (inside && !pointer.active) startTicker()
       if (!inside && pointer.active) stopTicker()
       pointer.active = inside
@@ -156,7 +175,7 @@ export default function DotLens({
       gsap.ticker.remove(tick)
       exitTween?.kill()
     }
-  }, [color, spacing, minRadius, maxRadius, lensRadius])
+  }, [color, hoverColor, hoverTarget, spacing, minRadius, maxRadius, lensRadius])
 
   return (
     <div ref={wrapRef} className={`dot-lens ${className}`} style={{ pointerEvents: 'none', ...style }} aria-hidden="true">
