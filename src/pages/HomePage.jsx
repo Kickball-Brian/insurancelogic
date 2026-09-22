@@ -28,9 +28,9 @@ function CompanyIntro() {
       <div className="container">
         <div className="company-intro-grid">
           <div className="company-intro-text">
-            <span className="section-label">About Insurance Logic</span>
+            <span className="section-label">About InsuranceLogic</span>
             <p>
-              Insurance Logic is a full-service marketing platform built for
+              InsuranceLogic is a full-service marketing platform built for
               independent insurance agents and the larger agencies that serve
               them. Send us budget and we handle the rest, from paid
               acquisition through compliant intake to real-time delivery.
@@ -67,8 +67,8 @@ function CompanyIntro() {
 
 export default function HomePage() {
   usePageMeta(
-    'Insurance Logic — Full-Service Marketing for Independent Agents',
-    'Insurance Logic turns marketing budget into compliant, verified leads and calls across nine insurance verticals — real-time routing, flexible criteria, and multi-product monetization on one platform.'
+    'InsuranceLogic — Full-Service Marketing for Independent Agents',
+    'InsuranceLogic turns marketing budget into compliant, verified leads and calls across nine insurance verticals — real-time routing, flexible criteria, and multi-product monetization on one platform.'
   )
   return (
     <>

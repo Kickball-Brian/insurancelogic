@@ -9,8 +9,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function ContactPage() {
   usePageMeta(
-    'Contact Insurance Logic | Get in Touch',
-    'Talk to the Insurance Logic team about your verticals, criteria, and volume. Call (877) 498-3614 or email info@emailagency.com.'
+    'Contact InsuranceLogic | Get in Touch',
+    'Talk to the InsuranceLogic team about your verticals, criteria, and volume. Call (877) 498-3614 or email info@emailagency.com.'
   )
   const pageRef = useRef(null)
 

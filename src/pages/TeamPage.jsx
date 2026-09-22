@@ -9,8 +9,8 @@ import MagneticBtn from '../components/MagneticBtn'
 gsap.registerPlugin(ScrollTrigger)
 
 // Shared leadership across Email Agency Inc. and its subsidiaries (Law Logic,
-// Insurance Logic). Mark and Joey are the primary day-to-day contacts for
-// Insurance Logic specifically.
+// InsuranceLogic). Mark and Joey are the primary day-to-day contacts for
+// InsuranceLogic specifically.
 // NOTE: Joey is intentionally left off pending his confirmation and headshot.
 const team = [
   { name: 'Amie Lawson',       title: 'Chief Executive Officer',              initials: 'AL', email: 'amie@emailagency.com',    photo: '/images/team/amie-lawson.webp' },
@@ -43,8 +43,8 @@ const capabilities = [
 
 export default function TeamPage() {
   usePageMeta(
-    'Our Team | Insurance Logic',
-    'Meet the Insurance Logic team — the leadership and business development group behind our full-service marketing platform for independent agents.'
+    'Our Team | InsuranceLogic',
+    'Meet the InsuranceLogic team — the leadership and business development group behind our full-service marketing platform for independent agents.'
   )
   const pageRef = useRef(null)
 
@@ -66,8 +66,8 @@ export default function TeamPage() {
     <div ref={pageRef}>
       <PageHero>
         <h1 className="page-title">Our Team</h1>
-        <h2 className="page-hero-h2">The People Behind <span className="gradient-text">Insurance Logic</span></h2>
-        <p className="page-lead">Insurance Logic runs on the same leadership and infrastructure team behind Law Logic and Email Agency Inc. — over 20 years of performance marketing experience, now focused on independent insurance agents.</p>
+        <h2 className="page-hero-h2">The People Behind <span className="gradient-text">InsuranceLogic</span></h2>
+        <p className="page-lead">InsuranceLogic runs on the same leadership and infrastructure team behind Law Logic and Email Agency Inc. — over 20 years of performance marketing experience, now focused on independent insurance agents.</p>
       </PageHero>
 
       <section className="section">
@@ -80,18 +80,18 @@ export default function TeamPage() {
                 <span className="gradient-text">New Focus</span>
               </h2>
               <p style={{ color: 'var(--text-soft)', lineHeight: 1.8, fontSize: 17, marginBottom: 20 }}>
-                Insurance Logic is a full-service marketing platform for independent
+                InsuranceLogic is a full-service marketing platform for independent
                 agents and the agencies that serve them. We're not a startup guessing
                 at lead generation — we're built on infrastructure that has run
                 Law Logic's claimant pipeline for years, adapted for insurance.
               </p>
               <p style={{ color: 'var(--text-soft)', lineHeight: 1.8, fontSize: 17, marginBottom: 32 }}>
-                Mark Muzzini leads day-to-day partner relationships for Insurance
-                Logic, backed by the same compliance, media, and technology
-                leadership that runs the rest of the business.
+                Mark Muzzini leads day-to-day partner relationships for
+                InsuranceLogic, backed by the same compliance, media, and
+                technology leadership that runs the rest of the business.
               </p>
               <p style={{ color: 'var(--text-muted)', fontSize: 15 }}>
-                Insurance Logic Inc. is a subsidiary of{' '}
+                InsuranceLogic Inc. is a subsidiary of{' '}
                 <a href="https://emailagency.com" target="_blank" rel="noreferrer" style={{ color: 'var(--accent)' }}>
                   Email Agency Inc.
                 </a>
@@ -133,7 +133,7 @@ export default function TeamPage() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="section-label">Leadership</span>
-            <h2 className="section-title">Meet the<br /><span className="gradient-text">Insurance Logic Team</span></h2>
+            <h2 className="section-title">Meet the<br /><span className="gradient-text">InsuranceLogic Team</span></h2>
           </div>
           <div className="team-grid">
             {team.map((m) => (

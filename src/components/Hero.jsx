@@ -45,7 +45,7 @@ export default function Hero() {
           </h1>
 
           <p className="hero-sub" style={{ animationDelay: '0.85s' }}>
-            Insurance Logic is a full-service marketing platform for independent
+            InsuranceLogic is a full-service marketing platform for independent
             agents and agencies. Send us budget and criteria, we send back
             compliant, verified leads and calls, routed in real time across
             nine insurance verticals.

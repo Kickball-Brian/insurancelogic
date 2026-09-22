@@ -1,6 +1,6 @@
-# Insurance Logic Website
+# InsuranceLogic Website
 
-React + Vite marketing site for Insurance Logic, built from the Law Logic
+React + Vite marketing site for InsuranceLogic, built from the Law Logic
 Website Rework template. Full-service marketing platform positioning for
 independent insurance agents and agencies.
 
@@ -23,7 +23,7 @@ npm run dev
 ## Known gaps / next steps
 
 - **Logo**: No designed lockup exists yet. `src/components/Logo.jsx` draws a
-  code-based wordmark (shared triangle mark + "Insurance Logic" text) as a
+  code-based wordmark (shared triangle mark + "InsuranceLogic" text) as a
   placeholder — swap in a real logo file when one's designed.
 - **Joey**: Left off the team page pending his confirmation and headshot
   (he was at a wedding when this draft was built). Add him to the `team`
@@ -42,6 +42,6 @@ npm run dev
   currently `noindex, nofollow` (see `netlify.toml` and
   `public/robots.txt`) until it's ready to go live — update both when
   cutting over to production.
-- **Analytics**: PostHog was intentionally left out (no Insurance Logic
+- **Analytics**: PostHog was intentionally left out (no InsuranceLogic
   project key yet). Add `posthog-js` back in `src/main.jsx` / `src/App.jsx`
   the same way `lawlogic-rework` does once a key exists.

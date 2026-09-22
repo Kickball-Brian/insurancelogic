@@ -33,7 +33,7 @@ const services = [
 
 export default function ServicesPage() {
   usePageMeta(
-    'Services | Insurance Logic',
+    'Services | InsuranceLogic',
     'Full-service marketing, real-time routing, flexible criteria, and multi-product call monetization for independent insurance agents and agencies.'
   )
   const pageRef = useRef(null)
@@ -53,7 +53,7 @@ export default function ServicesPage() {
       <PageHero>
         <h1 className="page-title">Our Services</h1>
         <h2 className="page-hero-h2">A Full-Stack Marketing <span className="gradient-text">Platform for Agents</span></h2>
-        <p className="page-lead">We built Insurance Logic around one goal: turning marketing budget into leads and calls that are ready to work, without asking you to manage the machinery behind it.</p>
+        <p className="page-lead">We built InsuranceLogic around one goal: turning marketing budget into leads and calls that are ready to work, without asking you to manage the machinery behind it.</p>
       </PageHero>
 
       <section className="section">

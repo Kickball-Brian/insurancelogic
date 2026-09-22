@@ -1,5 +1,5 @@
 // Code-drawn wordmark — triangle mark shared across the "Logic" family of brands
-// (Law Logic, Quote Logic, Insurance Logic), rendered inline so no raster logo
+// (Law Logic, Quote Logic, InsuranceLogic), rendered inline so no raster logo
 // asset is required. Swap in a designed lockup here once one exists.
 
 function TriangleMark({ className }) {
@@ -21,7 +21,7 @@ export default function Logo({ variant = 'dark', tagline = true }) {
     <span className={`brand-logo brand-logo--${variant}`}>
       <TriangleMark className="brand-logo-mark" />
       <span className="brand-logo-text">
-        <span className="brand-logo-word"><strong>Insurance</strong> Logic</span>
+        <span className="brand-logo-word"><strong>Insurance</strong>Logic</span>
         {tagline && <span className="brand-logo-tagline">Powered by Email Agency</span>}
       </span>
     </span>

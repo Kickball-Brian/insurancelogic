@@ -11,7 +11,7 @@ export default function Footer() {
         {/* ── Desktop layout (hidden on mobile) ── */}
         <div className="footer-inner">
           <div className="footer-brand">
-            <Link to="/" className="footer-logo" aria-label="Insurance Logic home">
+            <Link to="/" className="footer-logo" aria-label="InsuranceLogic home">
               <Logo variant="light" />
             </Link>
             <p>
@@ -55,7 +55,7 @@ export default function Footer() {
 
         {/* ── Mobile layout: centered + pills (hidden on desktop) ── */}
         <div className="footer-mobile">
-          <Link to="/" aria-label="Insurance Logic home">
+          <Link to="/" aria-label="InsuranceLogic home">
             <Logo variant="light" />
           </Link>
           <p className="footer-mobile-tagline">
@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>© {year} Insurance Logic. A subsidiary of Email Agency Inc. All rights reserved.</p>
+          <p>© {year} InsuranceLogic. A subsidiary of Email Agency Inc. All rights reserved.</p>
           <div className="footer-legal">
             <a href="https://www.linkedin.com/company/email-agency/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a href="https://www.facebook.com/EmailAgencyInc" target="_blank" rel="noreferrer">Facebook</a>

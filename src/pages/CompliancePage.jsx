@@ -27,8 +27,8 @@ const frameworkItems = [
 
 export default function CompliancePage() {
   usePageMeta(
-    'Compliance | Insurance Logic',
-    'Insurance Logic builds TCPA, DNC, and carrier-compliant practices into every stage of lead and call generation for independent agents.'
+    'Compliance | InsuranceLogic',
+    'InsuranceLogic builds TCPA, DNC, and carrier-compliant practices into every stage of lead and call generation for independent agents.'
   )
   const pageRef = useRef(null)
 
@@ -131,7 +131,7 @@ export default function CompliancePage() {
             <div className="cf-protect-inner">
               <h3 className="cf-protect-heading">One accountable operator</h3>
               <p className="cf-protect-body">
-                Insurance Logic runs on the same compliance leadership and
+                InsuranceLogic runs on the same compliance leadership and
                 infrastructure as Law Logic and Email Agency Inc. Policy
                 updates, carrier requirements, and consent standards are
                 maintained centrally and applied the same way across every

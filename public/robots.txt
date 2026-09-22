@@ -1,4 +1,4 @@
-# robots.txt — Insurance Logic
+# robots.txt — InsuranceLogic
 # NOTE: This site is a draft. netlify.toml sends X-Robots-Tag: noindex on every
 # response until it's ready for production — update both files at launch.
 

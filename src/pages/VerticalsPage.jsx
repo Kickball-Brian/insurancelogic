@@ -11,8 +11,8 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function VerticalsPage() {
   usePageMeta(
-    'Insurance Verticals | Insurance Logic',
-    'Insurance Logic covers nine verticals — Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto, GAP, and Umbrella — under one marketing platform.'
+    'Insurance Verticals | InsuranceLogic',
+    'InsuranceLogic covers nine verticals — Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto, GAP, and Umbrella — under one marketing platform.'
   )
   const pageRef = useRef(null)
 
@@ -38,7 +38,7 @@ export default function VerticalsPage() {
         <h2 className="page-hero-h2">Full Coverage, <span className="gradient-text">One Platform</span></h2>
         <p className="page-lead">
           Most agents work two or three product lines, not one. We built
-          Insurance Logic to cover the whole spectrum, so you can send us
+          InsuranceLogic to cover the whole spectrum, so you can send us
           criteria across every vertical you write instead of shopping
           around for the ones we don't.
         </p>

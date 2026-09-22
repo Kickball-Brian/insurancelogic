@@ -55,7 +55,7 @@ export default function Navbar() {
         transition={{ duration: 0.32, ease: 'easeInOut' }}
       >
         <div className="container">
-          <Link to="/" className="nav-logo" aria-label="Insurance Logic home" onClick={close}>
+          <Link to="/" className="nav-logo" aria-label="InsuranceLogic home" onClick={close}>
             <Logo variant="dark" />
           </Link>
 
