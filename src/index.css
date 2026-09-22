@@ -509,7 +509,12 @@ body::after {
 .hero-dot-lens {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  /* Above .container (z-index:1) so lit dots render on top of the hero
+     mark's SVG instead of being hidden behind its opaque fill — this
+     matters most for the white-on-red hover state, which was invisible
+     underneath the mark before. Canvas stays pointer-events:none, so
+     sitting on top never blocks clicks on the text/buttons below it. */
+  z-index: 2;
 }
 .hero-dot-lens canvas { display: block; width: 100%; height: 100%; }
 
