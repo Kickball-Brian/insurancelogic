@@ -103,14 +103,6 @@ export default function Services() {
           opacity: 1, y: 0, scale: 1,
           duration: 0.7, stagger: 0.08, ease: 'power3.out',
           scrollTrigger: { trigger: '.services-grid', start: 'top 80%' },
-          onComplete() {
-            gsap.to('.service-card .bc-line', {
-              strokeDashoffset: 0,
-              duration: 0.5,
-              stagger: 0.04,
-              ease: 'power2.out',
-            })
-          },
         }
       )
     }, sectionRef)
@@ -130,19 +122,6 @@ export default function Services() {
         <div className="services-grid">
           {services.map(({ Icon, title, desc, href }) => (
             <Link to={href} key={title} className="service-card" style={{ display: 'block', textDecoration: 'none' }}>
-              <svg className="bc-tl" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                <polyline className="bc-line" points="28,4 4,4 4,28" stroke="#9B1B30" strokeWidth="1.5" strokeLinecap="square" strokeDasharray="52" strokeDashoffset="52" />
-              </svg>
-              <svg className="bc-br" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                <polyline className="bc-line" points="0,24 24,24 24,0" stroke="#9B1B30" strokeWidth="1.5" strokeLinecap="square" strokeDasharray="52" strokeDashoffset="52" />
-              </svg>
-              <svg className="bc-tr" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                <polyline className="bc-hover-line" points="0,4 24,4 24,28" stroke="#9B1B30" strokeWidth="1.5" strokeLinecap="square" strokeDasharray="52" strokeDashoffset="52" />
-              </svg>
-              <svg className="bc-bl" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                <polyline className="bc-hover-line" points="28,24 4,24 4,0" stroke="#9B1B30" strokeWidth="1.5" strokeLinecap="square" strokeDasharray="52" strokeDashoffset="52" />
-              </svg>
-
               <div className="service-icon"><Icon /></div>
               <h3>{title}</h3>
               <p>{desc}</p>

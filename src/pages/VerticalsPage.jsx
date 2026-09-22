@@ -49,13 +49,6 @@ export default function VerticalsPage() {
           <div className="services-grid">
             {VERTICALS.map((v) => (
               <div className="service-card vertical-card" key={v.slug}>
-                <svg className="bc-tl" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <polyline points="28,4 4,4 4,28" stroke="#9B1B30" strokeWidth="1.5" strokeLinecap="square" />
-                </svg>
-                <svg className="bc-br" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                  <polyline points="0,24 24,24 24,0" stroke="#9B1B30" strokeWidth="1.5" strokeLinecap="square" />
-                </svg>
-
                 <div className="service-icon" style={{ fontSize: 26 }}>{v.icon}</div>
                 <h3>
                   {v.name}

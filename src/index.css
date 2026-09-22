@@ -652,57 +652,73 @@ body::after {
   .company-intro-brand-card { max-width: 280px; padding: 36px; }
 }
 
-/* ─── Services ─── */
+/* ─── Services ───
+   Flat, spaced-out card grid — real gaps instead of a hairline mosaic,
+   solid-crimson fill on hover instead of card chrome (brackets/borders
+   doing the work). Loosely modeled on kortrijkxpo.com's c-columns section
+   at the user's request: flat color blocking + generous whitespace, kept
+   to our own palette and toned down for a 6-9 card grid instead of 3. */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border);
-  margin-top: 60px; overflow: hidden;
+  gap: 28px;
+  margin-top: 60px;
 }
 .service-card {
   position: relative; padding: 40px 32px;
-  background: var(--surface); overflow: hidden;
-  transition: background 0.3s;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: background 0.3s ease, border-color 0.3s ease,
+    transform 0.3s ease, box-shadow 0.3s ease;
 }
-.service-card:hover { background: var(--surface-2); }
-.service-card::after {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 1px;
-  background: var(--gradient); opacity: 0; transition: opacity 0.3s;
+.service-card:hover {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -20px rgba(155,27,48,0.5);
 }
-.service-card:hover::after { opacity: 1; }
 .service-icon {
   width: 44px; height: 44px; border-radius: 4px;
   background: var(--crimson-subtle); border: 1px solid rgba(155,27,48,0.25);
   display: flex; align-items: center; justify-content: center;
   color: var(--crimson-bright);
   margin-bottom: 22px;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.service-card:hover .service-icon {
+  background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.35); color: #fff;
 }
 .service-card h3 {
   font-family: 'Lingwood', serif;
   font-size: 19px; font-weight: 700; letter-spacing: -0.01em;
   margin-bottom: 12px; color: var(--cream);
+  transition: color 0.3s ease;
 }
-.service-card p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+.service-card:hover h3 { color: #fff; }
+.service-card p {
+  font-size: 14px; color: var(--text-muted); line-height: 1.75;
+  transition: color 0.3s ease;
+}
+.service-card:hover p { color: rgba(255,255,255,0.85); }
 .vertical-badge {
   display: inline-block; margin-left: 10px; vertical-align: middle;
   font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--crimson-bright); background: var(--crimson-subtle);
   border: 1px solid rgba(155,27,48,0.25); border-radius: 20px; padding: 3px 10px;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.service-card:hover .vertical-badge {
+  background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.35); color: #fff;
 }
 .service-card .service-link {
   display: inline-flex; align-items: center; gap: 6px;
   margin-top: 20px; font-size: 12px; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--crimson-bright); transition: gap 0.2s;
+  color: var(--crimson-bright); transition: gap 0.2s, color 0.3s ease;
 }
-.service-card:hover .service-link { gap: 10px; }
-
-/* Bracket corners on service cards */
-.bc-tl, .bc-br { position: absolute; pointer-events: none; }
-.bc-tl { top: 12px; left: 12px; }
-.bc-br { bottom: 12px; right: 12px; }
+.service-card:hover .service-link { gap: 10px; color: #fff; }
 
 /* ─── Work / Tort Cards ─── */
 .work-grid {
@@ -2364,33 +2380,6 @@ body::after {
   .process-card-body { min-height: unset; }
 }
 
-/* ─── Services: hover bracket completion ─── */
-.bc-tr {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  pointer-events: none;
-}
-.bc-bl {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  pointer-events: none;
-}
-.bc-hover-line {
-  stroke-dasharray: 52;
-  stroke-dashoffset: 52;
-  transition: stroke-dashoffset 0.35s ease;
-}
-.service-card:hover .bc-hover-line {
-  stroke-dashoffset: 0;
-}
-.service-card .service-icon {
-  transition: transform 0.3s ease;
-}
-.service-card:hover .service-icon {
-  transform: scale(1.12) translateY(-2px);
-}
 
 /* ─── Page hero h2 subtitle (below live-site h1) ─── */
 .page-hero-h2 {
