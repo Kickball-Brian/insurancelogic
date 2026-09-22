@@ -23,8 +23,7 @@ export const VERTICALS = [
     slug: 'annuity',
     name: 'Annuity',
     icon: '📈',
-    desc: 'Fixed and indexed annuity leads for agents helping clients protect and grow retirement savings.',
-    comingSoon: true,
+    desc: 'Fixed and indexed annuity leads, calls and scheduled appointments for agents helping clients protect and grow retirement savings.',
   },
   {
     slug: 'home-insurance',
@@ -36,7 +35,7 @@ export const VERTICALS = [
     slug: 'mortgage-protection',
     name: 'Mortgage Protection',
     icon: '🔑',
-    desc: 'Mortgage protection leads for agents covering new and existing homeowners.',
+    desc: 'Mortgage protection leads and calls for agents covering new and existing homeowners.',
   },
   {
     slug: 'auto-insurance',
@@ -48,12 +47,12 @@ export const VERTICALS = [
     slug: 'gap-insurance',
     name: 'GAP Insurance',
     icon: '🛞',
-    desc: 'GAP coverage leads for agents writing alongside auto and financing products.',
+    desc: 'GAP coverage leads and calls for agents writing alongside auto and financing products.',
   },
   {
     slug: 'umbrella-insurance',
     name: 'Umbrella Insurance',
     icon: '☂️',
-    desc: 'Umbrella coverage leads for agents rounding out clients\' personal liability protection.',
+    desc: 'Umbrella coverage leads and calls for agents rounding out clients\' personal liability protection.',
   },
 ]
