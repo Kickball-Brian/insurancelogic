@@ -1,5 +1,5 @@
 // Code-drawn wordmark — triangle mark shared across the "Logic" family of brands
-// (Law Logic, Quote Logic, InsuranceLogic), rendered inline so no raster logo
+// (LawLogic, Quote Logic, InsuranceLogic), rendered inline so no raster logo
 // asset is required. Swap in a designed lockup here once one exists.
 
 function TriangleMark({ className }) {

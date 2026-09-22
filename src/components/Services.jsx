@@ -50,7 +50,7 @@ const services = [
   {
     Icon: ServiceIcons.route,
     title: 'Real-Time Lead Routing',
-    desc: 'The same routing infrastructure that powers Law Logic, now consolidated into one platform. Leads and calls reach the right agent the moment they qualify.',
+    desc: 'The same routing infrastructure that powers LawLogic, now consolidated into one platform. Leads and calls reach the right agent the moment they qualify.',
     href: '/services',
   },
   {

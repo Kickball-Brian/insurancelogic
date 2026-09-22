@@ -1,6 +1,6 @@
 # InsuranceLogic Website
 
-React + Vite marketing site for InsuranceLogic, built from the Law Logic
+React + Vite marketing site for InsuranceLogic, built from the LawLogic
 Website Rework template. Full-service marketing platform positioning for
 independent insurance agents and agencies.
 

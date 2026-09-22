@@ -44,7 +44,7 @@ const steps = [
   {
     num: '03',
     title: 'Real-Time Routing & Delivery',
-    desc: 'Leads and live calls route the moment they qualify, on the same infrastructure that powers Law Logic, now unified into one platform across every vertical.',
+    desc: 'Leads and live calls route the moment they qualify, on the same infrastructure that powers LawLogic, now unified into one platform across every vertical.',
     Icon: StepIcons.route,
   },
   {

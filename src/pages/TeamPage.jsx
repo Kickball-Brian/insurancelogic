@@ -8,7 +8,7 @@ import MagneticBtn from '../components/MagneticBtn'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Shared leadership across Email Agency Inc. and its subsidiaries (Law Logic,
+// Shared leadership across Email Agency Inc. and its subsidiaries (LawLogic,
 // InsuranceLogic). Mark and Joey are the primary day-to-day contacts for
 // InsuranceLogic specifically.
 // NOTE: Joey is intentionally left off pending his confirmation and headshot.
@@ -35,7 +35,7 @@ const team = [
 const capabilities = [
   { icon: '🎯', label: 'Paid Acquisition', desc: 'Media buying and affiliate sourcing built around your criteria, not a one-size-fits-all funnel.' },
   { icon: '📋', label: 'Compliant Intake', desc: 'TCPA- and DNC-compliant consent capture and screening on every lead and call.' },
-  { icon: '🔀', label: 'Real-Time Routing', desc: 'The same routing infrastructure behind Law Logic, now unified for insurance.' },
+  { icon: '🔀', label: 'Real-Time Routing', desc: 'The same routing infrastructure behind LawLogic, now unified for insurance.' },
   { icon: '☎️', label: 'Multi-Product Monetization', desc: 'One call can qualify for two or three verticals. We route and price accordingly.' },
   { icon: '📊', label: 'Reporting & Optimization', desc: 'Ongoing tuning of sourcing and routing as your book of business changes.' },
   { icon: '🛡️', label: 'Compliance Oversight', desc: 'In-house compliance leadership shared across every Email Agency subsidiary.' },
@@ -67,7 +67,7 @@ export default function TeamPage() {
       <PageHero>
         <h1 className="page-title">Our Team</h1>
         <h2 className="page-hero-h2">The People Behind <span className="gradient-text">InsuranceLogic</span></h2>
-        <p className="page-lead">InsuranceLogic runs on the same leadership and infrastructure team behind Law Logic and Email Agency Inc. — over 20 years of performance marketing experience, now focused on independent insurance agents.</p>
+        <p className="page-lead">InsuranceLogic runs on the same leadership and infrastructure team behind LawLogic and Email Agency Inc. — over 20 years of performance marketing experience, now focused on independent insurance agents.</p>
       </PageHero>
 
       <section className="section">
@@ -83,7 +83,7 @@ export default function TeamPage() {
                 InsuranceLogic is a full-service marketing platform for independent
                 agents and the agencies that serve them. We're not a startup guessing
                 at lead generation — we're built on infrastructure that has run
-                Law Logic's claimant pipeline for years, adapted for insurance.
+                LawLogic's claimant pipeline for years, adapted for insurance.
               </p>
               <p style={{ color: 'var(--text-soft)', lineHeight: 1.8, fontSize: 17, marginBottom: 32 }}>
                 Mark Muzzini leads day-to-day partner relationships for

@@ -17,7 +17,7 @@ const services = [
   {
     icon: '🔀',
     title: 'Real-Time Routing Technology',
-    desc: 'The same infrastructure that powers Law Logic, now consolidated into one platform. Leads and live calls route to the right agent the moment they qualify, across every vertical you write.',
+    desc: 'The same infrastructure that powers LawLogic, now consolidated into one platform. Leads and live calls route to the right agent the moment they qualify, across every vertical you write.',
   },
   {
     icon: '🎚️',

@@ -36,7 +36,7 @@ function CompanyIntro() {
               acquisition through compliant intake to real-time delivery.
             </p>
             <p>
-              We run on the same routing technology that powers Law Logic,
+              We run on the same routing technology that powers LawLogic,
               a sister company with over 20 years in performance marketing,
               now consolidated into a single platform built for insurance.
               That means proven infrastructure from day one, not a startup

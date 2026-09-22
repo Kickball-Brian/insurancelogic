@@ -132,7 +132,7 @@ export default function CompliancePage() {
               <h3 className="cf-protect-heading">One accountable operator</h3>
               <p className="cf-protect-body">
                 InsuranceLogic runs on the same compliance leadership and
-                infrastructure as Law Logic and Email Agency Inc. Policy
+                infrastructure as LawLogic and Email Agency Inc. Policy
                 updates, carrier requirements, and consent standards are
                 maintained centrally and applied the same way across every
                 campaign.
