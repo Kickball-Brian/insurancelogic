@@ -1,5 +1,14 @@
 import { useEffect, useRef } from 'react'
 
+// Elements whose visible fill comes from `background-image` (a CSS
+// gradient) rather than `background-color` — the luminance walk-up below
+// only reads `backgroundColor`, so a gradient like .btn-primary's reads as
+// fully transparent and gets skipped entirely, walking straight past it to
+// whatever's behind it. (ea-rework's Cursor.jsx has this exact gap too —
+// its primary buttons never actually flip the cursor either.) Anything
+// listed here is always treated as dark, on top of the luminance check.
+const GRADIENT_DARK_SELECTOR = '.btn-primary'
+
 export default function Cursor() {
   const dotRef  = useRef(null)
   const ringRef = useRef(null)
@@ -48,9 +57,10 @@ export default function Cursor() {
 
       if (ts - lastBgCheck > 120) {
         lastBgCheck = ts
-        const [r, g, b] = bgColorAt(document.elementFromPoint(mx, my))
+        const elAtPoint = document.elementFromPoint(mx, my)
+        const [r, g, b] = bgColorAt(elAtPoint)
         const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255
-        const nowOnDark = luminance < 0.5
+        const nowOnDark = luminance < 0.5 || !!elAtPoint?.closest(GRADIENT_DARK_SELECTOR)
         if (nowOnDark !== onDark) {
           onDark = nowOnDark
           dot.classList.toggle('cursor-dot--on-dark', onDark)
