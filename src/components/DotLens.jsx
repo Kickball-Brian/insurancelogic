@@ -2,20 +2,21 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 
 /**
- * Halftone dot field with a cursor-follow magnifying lens — dots near the
- * cursor bulge up in size/opacity with a smooth radial falloff, like a loupe
- * passing over a halftone print. Reference: the hero on sandeep.design.
+ * Halftone dot GRID with a cursor-follow magnifying lens — an evenly spaced
+ * grid of dots, invisible at rest, that fade in and grow (1px → 5px) with a
+ * smooth radial falloff as the cursor passes near them, like a loupe
+ * revealing a halftone print. Reference: the hero on sandeep.design.
  *
- * Canvas-based (not DOM dots) so a dense field redraws cheaply every frame.
+ * Canvas-based (not DOM dots) so a dense grid redraws cheaply every frame.
  * The canvas itself is pointer-events:none — the wrapper tracks the real
  * pointer so the lens still works even if something else sits on top.
  */
 export default function DotLens({
   color = '#9B1B30',
-  dotCount = 260,
-  baseRadius = 1.6,
+  spacing = 20,
+  minRadius = 1,
+  maxRadius = 5,
   lensRadius = 130,
-  magnify = 3.2,
   className = '',
   style = {},
 }) {
@@ -41,21 +42,19 @@ export default function DotLens({
     const lens = { x: -9999, y: -9999 }
 
     function buildDots() {
-      const cx = width / 2
-      const cy = height / 2
-      const r = Math.min(width, height) / 2
+      // Plain grid, `spacing`px apart in both directions, centered in
+      // whatever leftover margin doesn't divide evenly — no jitter, no
+      // per-dot randomness. Dots carry no base size/alpha of their own now;
+      // both come entirely from lens distance at draw time.
       dots = []
-      for (let i = 0; i < dotCount; i++) {
-        // Jittered radial placement (not a plain grid) so the cluster reads
-        // as an organic cloud, denser toward the center.
-        const angle = Math.random() * Math.PI * 2
-        const dist = Math.sqrt(Math.random()) * r
-        const x = cx + Math.cos(angle) * dist
-        const y = cy + Math.sin(angle) * dist * 0.85 // slight vertical squash
-        const edgeFade = 1 - dist / r
-        const alpha = Math.max(0.08, edgeFade * (0.35 + Math.random() * 0.5))
-        const rad = baseRadius * (0.6 + Math.random() * 0.8)
-        dots.push({ x, y, alpha, rad })
+      const cols = Math.floor(width / spacing)
+      const rows = Math.floor(height / spacing)
+      const offsetX = (width - (cols - 1) * spacing) / 2
+      const offsetY = (height - (rows - 1) * spacing) / 2
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          dots.push({ x: offsetX + col * spacing, y: offsetY + row * spacing })
+        }
       }
     }
 
@@ -79,27 +78,26 @@ export default function DotLens({
       // needed, and the exit tween's eased retreat actually shows up.
       ctx.clearRect(0, 0, width, height)
       for (const d of dots) {
-        let scale = 1
-        let alpha = d.alpha
         const dx = d.x - lens.x
         const dy = d.y - lens.y
         const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < lensRadius) {
-          const t = 1 - dist / lensRadius
-          const falloff = t * t // eased falloff, peak at cursor
-          scale = 1 + magnify * falloff
-          alpha = Math.min(1, d.alpha + falloff * 0.6)
-        }
+        if (dist >= lensRadius) continue // fully transparent — skip the draw call entirely
+
+        const t = 1 - dist / lensRadius
+        const falloff = t * t // eased, 0 at the lens edge, 1 dead-center
+        const radius = minRadius + (maxRadius - minRadius) * falloff
         ctx.beginPath()
         ctx.fillStyle = color
-        ctx.globalAlpha = alpha
-        ctx.arc(d.x, d.y, d.rad * scale, 0, Math.PI * 2)
+        ctx.globalAlpha = falloff // transparent at the edge, fully opaque at the cursor
+        ctx.arc(d.x, d.y, radius, 0, Math.PI * 2)
         ctx.fill()
       }
       ctx.globalAlpha = 1
     }
 
-    // Static field for reduced-motion / no pointer support — build once, no loop.
+    // Reduced-motion: build once, no cursor loop — with the lens parked off
+    // at -9999, `draw()` naturally renders nothing (every dot is beyond
+    // `lensRadius`), which is the correct at-rest state for this effect.
     resize()
     if (reduce) {
       window.addEventListener('resize', resize)
@@ -158,7 +156,7 @@ export default function DotLens({
       gsap.ticker.remove(tick)
       exitTween?.kill()
     }
-  }, [color, dotCount, baseRadius, lensRadius, magnify])
+  }, [color, spacing, minRadius, maxRadius, lensRadius])
 
   return (
     <div ref={wrapRef} className={`dot-lens ${className}`} style={{ pointerEvents: 'none', ...style }} aria-hidden="true">
