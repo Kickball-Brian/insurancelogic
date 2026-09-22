@@ -21,7 +21,7 @@ export default function DotLens({
   color = '#9B1B30',
   hoverColor = null,
   hoverTarget = null,
-  spacing = 20,
+  spacing = 40,
   minRadius = 1,
   maxRadius = 5,
   lensRadius = 130,
