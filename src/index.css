@@ -496,31 +496,15 @@ body::after {
   position: relative; z-index: 2;
   text-align: left; margin: 0;
   grid-column: 1;
+  background: transparent;
 }
 
 /* ── Hero visual panel (replaces a photo/video background we don't have yet) ── */
-.hero-visual { grid-column: 2; display: flex; justify-content: center; }
-.hero-visual-card {
-  width: 100%; max-width: 340px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px 28px;
-  display: flex; flex-direction: column; align-items: center; gap: 28px;
-  box-shadow: 0 30px 60px -20px rgba(29,36,45,0.18);
-}
-.hero-visual-card svg { width: 96px; height: auto; }
-.hero-visual-stats { display: flex; flex-direction: column; gap: 16px; width: 100%; }
-.hero-visual-stats li {
-  display: flex; align-items: baseline; gap: 12px;
-  padding-bottom: 14px; border-bottom: 1px solid var(--border);
-}
-.hero-visual-stats li:last-child { border-bottom: none; padding-bottom: 0; }
-.hero-visual-stats strong { font-size: 26px; font-weight: 700; color: var(--crimson); min-width: 46px; }
-.hero-visual-stats span { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+.hero-visual { grid-column: 2; display: flex; justify-content: center; align-items: center; }
+.hero-visual svg { width: 96px; height: auto; }
 
-/* ── Cursor dot-lens field (DotLens.jsx) — sits behind the visual card,
-   bigger than it, so the halftone cloud peeks out around the edges ── */
+/* ── Cursor dot-lens field (DotLens.jsx) — sits behind the visual mark,
+   bigger than it, so the halftone grid surrounds it on hover ── */
 .hero-dot-lens {
   position: absolute;
   top: 2%; right: -4%;
