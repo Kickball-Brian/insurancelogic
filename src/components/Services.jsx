@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import HalftoneDots from './HalftoneDots'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -120,9 +119,6 @@ export default function Services() {
 
   return (
     <section className="section" id="services" ref={sectionRef} style={{ position: 'relative', overflow: 'hidden' }}>
-      <HalftoneDots position="tr" size="md" density="lg" opacity="faint" speed={0.2} />
-      <HalftoneDots position="bl" size="sm" density="md" opacity="faint" speed={0.1} />
-
       <div className="container">
         <div className="services-header">
           <h2 className="section-title">

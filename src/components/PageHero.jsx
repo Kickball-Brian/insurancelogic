@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import HalftoneDots from './HalftoneDots'
 
 gsap.registerPlugin(ScrollTrigger)
 
 /**
- * Reusable inner-page hero banner with halftone dot clusters and entrance animation.
+ * Reusable inner-page hero banner with entrance animation.
  * Wrap page header content as children, or use the label/title/subtitle props shorthand.
  * CSS keyframe animations used (not GSAP) to avoid React 18 StrictMode opacity-0 bug.
  */
@@ -48,10 +47,6 @@ export default function PageHero({ label, title, subtitle, children, minHeight, 
 
   return (
     <div className={`page-hero${hasBg ? ' page-hero--img' : ''}${darkText ? ' page-hero--dark-text' : ''}`} ref={ref} style={style}>
-      {/* Halftone clusters — only shown without a photo bg */}
-      {!hasBg && <HalftoneDots position="tr" size="xl" density="md" opacity="light" speed={0.2} rotate="-10deg" />}
-      {!hasBg && <HalftoneDots position="bl" size="md" density="sm" opacity="faint" speed={0.1} rotate="5deg" />}
-
       <div className="container">
         <div className="page-hero-content page-hero-animate">
           {children ?? (

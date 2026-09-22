@@ -242,48 +242,6 @@ body::after {
 }
 .btn-outline:hover { background: var(--crimson-subtle); }
 
-/* ─── Halftone Dot Utilities ─── */
-.dots-cluster {
-  position: absolute;
-  pointer-events: none;
-  overflow: hidden;
-  border-radius: 2px;
-  will-change: transform;
-}
-.dots-sm {
-  background-image: radial-gradient(circle, var(--crimson) 1px, transparent 1px);
-  background-size: 10px 10px;
-}
-.dots-md {
-  background-image: radial-gradient(circle, var(--crimson) 1.5px, transparent 1.5px);
-  background-size: 18px 18px;
-}
-.dots-lg {
-  background-image: radial-gradient(circle, var(--crimson) 2px, transparent 2px);
-  background-size: 26px 26px;
-}
-.dots-xl {
-  background-image: radial-gradient(circle, var(--crimson) 2.5px, transparent 2.5px);
-  background-size: 34px 34px;
-}
-/* opacity levels */
-.dots-faint  { opacity: 0.12; }
-.dots-light  { opacity: 0.2; }
-.dots-normal { opacity: 0.3; }
-.dots-strong { opacity: 0.45; }
-/* sizes */
-.cluster-sm { width: 130px; height: 130px; }
-.cluster-md { width: 220px; height: 180px; }
-.cluster-lg { width: 320px; height: 240px; }
-.cluster-xl { width: 420px; height: 300px; }
-/* positions */
-.pos-tr { top: 0; right: 0; }
-.pos-tl { top: 0; left: 0; }
-.pos-br { bottom: 0; right: 0; }
-.pos-bl { bottom: 0; left: 0; }
-.pos-tr-out { top: -40px; right: -40px; }
-.pos-bl-out { bottom: -40px; left: -40px; }
-
 /* ─── Bracket Card System ─── */
 .bracket-card {
   position: relative;
