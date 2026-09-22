@@ -501,7 +501,7 @@ body::after {
 
 /* ── Hero visual panel (replaces a photo/video background we don't have yet) ── */
 .hero-visual { grid-column: 2; display: flex; justify-content: center; align-items: center; }
-.hero-visual svg { width: 192px; height: auto; }
+.hero-visual svg { width: 288px; height: auto; }
 
 /* ── Cursor dot-lens field (DotLens.jsx) — full-bleed across the whole hero
    (including hero-content) so the lens reacts no matter where you hover,
