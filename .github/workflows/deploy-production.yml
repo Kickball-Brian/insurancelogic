@@ -1,0 +1,53 @@
+name: Deploy to production
+
+# Manual only — production here is a plain Apache host with no CI/CD of its
+# own, previously updated by hand (build locally, upload dist/ over
+# SFTP/WinSCP). This replaces that manual step with a button, but keeps the
+# same "only when I say so" approval used for every push to staging — it
+# does NOT run automatically on push to main.
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # Matches NODE_VERSION in netlify.toml, so the build this produces
+          # is the same one staging has already been tested against.
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (vite build + scripts/prerender.mjs)
+        run: npm run build
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.PROD_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # Pinned host key (captured directly from the server, not
+          # trust-on-first-connect) — verifiable in this file, not hidden in
+          # a secret. Bound to whatever host the PROD_SSH_HOST secret points
+          # at, so if that ever changes this line still means what it says.
+          echo "${{ secrets.PROD_SSH_HOST }} ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPjMH9wGJtRIXxM7mw+h55MP7k2bx7gc1ByxA/SAp1rf" >> ~/.ssh/known_hosts
+
+      - name: Deploy dist/ via rsync
+        run: |
+          rsync -avz --delete \
+            --exclude='.DS_Store' \
+            -e "ssh -i ~/.ssh/deploy_key -o UserKnownHostsFile=~/.ssh/known_hosts" \
+            dist/ "${{ secrets.PROD_SSH_USER }}@${{ secrets.PROD_SSH_HOST }}:/var/www/insuranceLogic/"
+
+      - name: Clean up key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
