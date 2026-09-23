@@ -135,9 +135,25 @@ function waitForServer(url, timeoutMs = 15000) {
 
 async function main() {
   console.log('[prerender] starting vite preview...')
-  const preview = spawn('npx', ['vite', 'preview', '--port', String(port), '--strictPort'], {
+  // Spawn vite's own bin directly (not `npx vite`) and `detached: true` so
+  // this process is its own process-group leader. `npx` wraps the real
+  // vite process in a child of its own — killing the npx wrapper in the
+  // `finally` below doesn't kill that grandchild, which survives as an
+  // orphan still holding its stdout/stderr pipes open. This script's
+  // `data` listeners on those pipes then keep Node's event loop alive
+  // waiting for EOF that never comes, so the script "finishes" (last log
+  // line prints, all files written correctly) but the process never
+  // exits — which reads as a hang to whatever's running the build. Hit
+  // this for real on this exact project via Netlify: the full prerender
+  // completed successfully in the build log, then the build timed out
+  // ~18 minutes later with no further output. Spawning the real binary
+  // directly avoids the wrapper-orphan issue entirely; `detached` +
+  // killing the negative PID (the process group) in `finally` is a
+  // second layer of defense in case vite itself ever spawns a child.
+  const preview = spawn(process.execPath, [join(root, 'node_modules/vite/bin/vite.js'), 'preview', '--port', String(port), '--strictPort'], {
     cwd: root,
     stdio: 'pipe',
+    detached: true,
   })
   preview.stdout.on('data', () => {})
   preview.stderr.on('data', () => {})
@@ -199,7 +215,9 @@ async function main() {
       await browser.close()
     }
   } finally {
-    preview.kill()
+    // Negative PID = kill the whole process group (POSIX), not just the
+    // immediate child — see the spawn comment above for why that matters.
+    try { process.kill(-preview.pid, 'SIGTERM') } catch { preview.kill() }
   }
 
   // Sanity check: a route that errors client-side shouldn't silently ship
@@ -212,6 +230,13 @@ async function main() {
   }
 
   console.log(`[prerender] done — ${routes.length} routes + 404 prerendered`)
+  // Explicit exit as a second safety net beyond the process-group kill
+  // above — belt and suspenders against any other handle (a stray
+  // keep-alive socket, a CI-container quirk in how Chrome's process tree
+  // gets reaped) silently keeping the event loop alive after everything
+  // this script actually cares about has already completed and been
+  // written to disk.
+  process.exit(0)
 }
 
 main().catch((err) => {
