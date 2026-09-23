@@ -3,13 +3,9 @@ import DotLens from './DotLens'
 import MagneticBtn from './MagneticBtn'
 
 const WORDS = [
-  { text: 'Take', gradient: false },
-  { text: 'the', gradient: false },
-  { text: 'Guesswork', gradient: false },
-  { text: 'out', gradient: false },
-  { text: 'of', gradient: false },
+  { text: 'Full-Service', gradient: false },
   { text: 'Insurance', gradient: true },
-  { text: 'Leads', gradient: true },
+  { text: 'Marketing', gradient: true },
 ]
 
 export default function Hero() {
