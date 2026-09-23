@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import usePageMeta from '../hooks/usePageMeta'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import PageHero from '../components/PageHero'
-import MagneticBtn from '../components/MagneticBtn'
+import LeadLogicForm from '../components/LeadLogicForm'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -35,21 +35,7 @@ export default function ContactPage() {
       <section className="section" style={{ paddingTop: 60 }}>
         <div className="container">
           <div className="contact-page-grid">
-            <div className="contact-form-wrap">
-              <div className="contact-form-placeholder">
-                <h3>Reach us directly</h3>
-                <p>
-                  Our lead intake form is being wired up for this vertical.
-                  In the meantime, call or email and we'll get your campaign
-                  moving.
-                </p>
-                <MagneticBtn>
-                  <a href="mailto:info@emailagency.com" className="btn btn-primary" style={{ fontSize: 16, padding: '16px 36px' }}>
-                    Email Our Team
-                  </a>
-                </MagneticBtn>
-              </div>
-            </div>
+            <LeadLogicForm />
 
             <div className="contact-info-list">
               {[

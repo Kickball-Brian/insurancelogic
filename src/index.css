@@ -1589,13 +1589,6 @@ body::after {
 }
 .form-group textarea { min-height: 130px; resize: vertical; }
 
-.contact-form-placeholder {
-  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: clamp(32px, 5vw, 56px); display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
-}
-.contact-form-placeholder h3 { font-size: 24px; font-weight: 700; color: var(--cream); letter-spacing: -0.01em; }
-.contact-form-placeholder p { font-size: 15px; color: var(--text-muted); line-height: 1.75; max-width: 440px; }
-
 .contact-info-list { display: flex; flex-direction: column; gap: 2px; }
 .contact-info-item {
   background: var(--surface); border: 1px solid var(--border);

@@ -1,0 +1,38 @@
+/* Contact page — LeadLogic embed field styling.
+   #ll-form's contents are injected by the vendor widget (form.min.js), not
+   React, so these are plain CSS overrides on its Bootstrap .form-control
+   markup rather than component styles, plus a scroll-in grow animation
+   applied from LeadLogicForm.jsx once the fields actually exist in the DOM. */
+/* No background on the form itself — just the fields, bordered — so it sits
+   directly on the page instead of looking like a boxed-in card. */
+#ll-form,
+#ll-form #form-container,
+#ll-form .card-body,
+#ll-form .card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+#ll-form .form-control {
+  border-width: 1px;
+  border-color: var(--border);
+  box-sizing: border-box;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+}
+#ll-form .form-control:focus {
+  border-color: var(--crimson);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 3px var(--crimson-subtle);
+  outline: none;
+}
+#ll-form .form-label {
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+#ll-form .form-group.mt1 { margin-top: 0.75rem !important; }
