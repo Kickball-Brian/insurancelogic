@@ -9,9 +9,9 @@ import MagneticBtn from '../components/MagneticBtn'
 gsap.registerPlugin(ScrollTrigger)
 
 // Shared leadership across Email Agency Inc. and its subsidiaries (LawLogic,
-// InsuranceLogic). Mark and Joey are the primary day-to-day contacts for
-// InsuranceLogic specifically.
-// NOTE: Joey is intentionally left off pending his confirmation and headshot.
+// InsuranceLogic). Marc Loreti and Joey Marino are the primary day-to-day
+// contacts for InsuranceLogic specifically.
+// NOTE: Joey Marino is intentionally left off this grid pending his title and headshot.
 const team = [
   { name: 'Amie Lawson',       title: 'Chief Executive Officer',              initials: 'AL', email: 'amie@emailagency.com',    photo: '/images/team/amie-lawson.webp' },
   { name: 'Michelle Pocius',   title: 'Chief Operations Officer',             initials: 'MP', email: 'michelle@emailagency.com', photo: '/images/team/michelle-pocius.webp' },
@@ -86,9 +86,10 @@ export default function TeamPage() {
                 LawLogic's claimant pipeline for years, adapted for insurance.
               </p>
               <p style={{ color: 'var(--text-soft)', lineHeight: 1.8, fontSize: 17, marginBottom: 32 }}>
-                Mark Muzzini leads day-to-day partner relationships for
-                InsuranceLogic, backed by the same compliance, media, and
-                technology leadership that runs the rest of the business.
+                Marc Loreti and Joey Marino lead day-to-day partner
+                relationships for InsuranceLogic, backed by the same
+                compliance, media, and technology leadership that runs the
+                rest of the business.
               </p>
               <p style={{ color: 'var(--text-muted)', fontSize: 15 }}>
                 InsuranceLogic Inc. is a subsidiary of{' '}

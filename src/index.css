@@ -299,26 +299,9 @@ body::after {
 .navbar .container { display: flex; align-items: center; justify-content: space-between; }
 .nav-logo { display: inline-flex; }
 
-/* ── Wordmark (Logo.jsx) — triangle mark + stacked text, no raster asset ── */
-.brand-logo { display: inline-flex; align-items: center; gap: 12px; line-height: 1; }
-.brand-logo-mark { width: 30px; height: auto; flex-shrink: 0; }
-.brand-logo-text { display: flex; flex-direction: column; gap: 3px; }
-.brand-logo-word {
-  font-family: 'Lingwood', 'Inter', system-ui, sans-serif;
-  font-size: 19px; letter-spacing: 0.02em; font-weight: 400;
-  white-space: nowrap;
-}
-.brand-logo-word strong { font-weight: 700; }
-.brand-logo-tagline {
-  font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
-  font-weight: 600; white-space: nowrap;
-}
-.brand-logo--dark .brand-logo-word    { color: var(--cream); }
-.brand-logo--dark .brand-logo-tagline { color: var(--text-muted); }
-.brand-logo--light .brand-logo-word    { color: #fff; }
-.brand-logo--light .brand-logo-tagline { color: rgba(255,255,255,0.55); }
-
-.footer-mobile .brand-logo { justify-content: center; }
+/* ── Designed lockup (Logo.jsx, variant="dark") ── */
+.brand-logo-image { height: 40px; width: auto; display: block; transition: height 0.35s ease; }
+.navbar.scrolled .brand-logo-image { height: 34px; }
 
 /* Animated hamburger — menu trigger (ham3 / hamRotate style) */
 .nav-hamburger {

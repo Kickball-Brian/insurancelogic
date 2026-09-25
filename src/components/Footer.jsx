@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="footer-inner">
           <div className="footer-brand">
             <Link to="/" className="footer-logo" aria-label="InsuranceLogic home">
-              <Logo variant="light" />
+              <Logo variant="light" className="footer-logo-img" />
             </Link>
             <p>
               A full-service marketing platform turning agent budget into
@@ -56,7 +56,7 @@ export default function Footer() {
         {/* ── Mobile layout: centered + pills (hidden on desktop) ── */}
         <div className="footer-mobile">
           <Link to="/" aria-label="InsuranceLogic home">
-            <Logo variant="light" />
+            <Logo variant="light" className="footer-logo-img" />
           </Link>
           <p className="footer-mobile-tagline">
             Full-service marketing for independent insurance agents and agencies.
