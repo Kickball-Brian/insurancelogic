@@ -718,6 +718,29 @@ body::after {
 }
 .service-card:hover .service-link { gap: 10px; color: #fff; }
 
+/* Vertical cards: image banner along the top instead of a small icon badge.
+   Overrides .service-card's own padding (0, since the image bleeds to the
+   card edges) — text lives in .vertical-card-body instead. */
+.vertical-card { padding: 0; display: flex; flex-direction: column; }
+.vertical-card-img { width: 100%; aspect-ratio: 16 / 9; overflow: hidden; flex-shrink: 0; }
+.vertical-card-img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.vertical-card:hover .vertical-card-img img { transform: scale(1.06); }
+.vertical-card-img-placeholder {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  background: var(--gradient); font-size: 44px;
+}
+.vertical-card-body { padding: 26px 28px 30px; flex: 1; }
+.vertical-card-body h3 {
+  font-family: 'Lingwood', serif; font-size: 19px; font-weight: 700; letter-spacing: -0.01em;
+  margin-bottom: 12px; color: var(--cream); transition: color 0.3s ease;
+}
+.vertical-card:hover .vertical-card-body h3 { color: #fff; }
+.vertical-card-body p { font-size: 14px; color: var(--text-muted); line-height: 1.75; transition: color 0.3s ease; }
+.vertical-card:hover .vertical-card-body p { color: rgba(255,255,255,0.85); }
+
 /* ─── Work / Tort Cards ─── */
 .work-grid {
   display: grid;
@@ -1215,21 +1238,43 @@ body::after {
 }
 .team-name-link:hover { color: var(--crimson-bright); }
 
-/* ─── Services Full Page ─── */
+/* ─── Services Full Page ───
+   Image panel on the left (desktop), moving above the text on mobile —
+   same dual mobile/desktop image pattern as the homepage Process cards. */
 .services-full-list { display: flex; flex-direction: column; gap: 2px; }
 .service-full-card {
   background: var(--surface); border: 1px solid var(--border);
-  padding: 44px 48px; display: grid; grid-template-columns: 56px 1fr; gap: 32px; align-items: start;
+  display: flex; align-items: stretch;
   transition: background 0.3s; position: relative; overflow: hidden;
 }
-.service-full-card::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px; background: var(--gradient); opacity: 0; transition: opacity 0.3s;
-}
 .service-full-card:hover { background: var(--surface-2); }
-.service-full-card:hover::before { opacity: 1; }
-@media (max-width: 600px) { .service-full-card { grid-template-columns: 1fr; padding: 32px 24px; } }
-.service-full-icon { font-size: 32px; padding-top: 4px; }
+
+/* Desktop image panel — left side */
+.service-full-img-desktop { position: relative; width: 38%; flex-shrink: 0; overflow: hidden; }
+.service-full-img-desktop img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.service-full-card:hover .service-full-img-desktop img { transform: scale(1.06); }
+/* Fade right edge (nearest the text) into card bg. Wider + a flat opaque
+   band right at the seam (not just a straight linear fade from 0%) so a
+   photo with strong color near that edge still blends cleanly instead of
+   showing a muddy half-transparent mix of card bg + photo color. */
+.service-full-img-fade {
+  position: absolute; inset: 0;
+  background: linear-gradient(to left, var(--surface) 0%, var(--surface) 6%, transparent 58%);
+  pointer-events: none;
+}
+.service-full-img-placeholder {
+  width: 100%; height: 100%; min-height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gradient); font-size: 40px;
+}
+
+/* Mobile image — full width above text, hidden on desktop */
+.service-full-img-mobile { display: none; }
+
+.service-full-body { flex: 1; padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 48px); display: flex; flex-direction: column; justify-content: center; }
 .service-full-body h2 {
   font-family: 'Lingwood', serif;
   font-size: clamp(20px, 3vw, 26px); font-weight: 700; letter-spacing: -0.02em;
@@ -1241,6 +1286,20 @@ body::after {
   color: var(--crimson-bright); transition: color 0.2s;
 }
 .service-full-link:hover { color: var(--cream); }
+
+@media (max-width: 768px) {
+  .service-full-card { flex-direction: column; }
+  .service-full-img-mobile {
+    display: block; width: 100%; height: 200px; overflow: hidden;
+  }
+  .service-full-img-mobile img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .service-full-card:hover .service-full-img-mobile img { transform: scale(1.06); }
+  .service-full-img-desktop { display: none; }
+  .service-full-body { padding: 28px 24px; }
+}
 
 /* ─── Included / Catch / Who grids ─── */
 .included-grid, .catch-grid, .who-grid {

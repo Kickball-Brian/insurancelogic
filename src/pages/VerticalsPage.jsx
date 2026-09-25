@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function VerticalsPage() {
   usePageMeta(
     'Insurance Verticals | InsuranceLogic',
-    'InsuranceLogic covers Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto, GAP, Umbrella, and more — all under one marketing platform.'
+    'InsuranceLogic covers Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto, GAP, Umbrella, and more, all under one marketing platform.'
   )
   const pageRef = useRef(null)
 
@@ -49,12 +49,18 @@ export default function VerticalsPage() {
           <div className="services-grid">
             {VERTICALS.map((v) => (
               <div className="service-card vertical-card" key={v.slug}>
-                <div className="service-icon" style={{ fontSize: 26 }}>{v.icon}</div>
-                <h3>
-                  {v.name}
-                  {v.comingSoon && <span className="vertical-badge">Launching Soon</span>}
-                </h3>
-                <p>{v.desc}</p>
+                <div className="vertical-card-img">
+                  {v.image
+                    ? <img src={v.image} alt={v.name} loading="lazy" />
+                    : <div className="vertical-card-img-placeholder">{v.icon}</div>}
+                </div>
+                <div className="vertical-card-body">
+                  <h3>
+                    {v.name}
+                    {v.comingSoon && <span className="vertical-badge">Launching Soon</span>}
+                  </h3>
+                  <p>{v.desc}</p>
+                </div>
               </div>
             ))}
           </div>

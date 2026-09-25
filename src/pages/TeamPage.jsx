@@ -19,11 +19,11 @@ const team = [
   { name: 'Marc Loreti',       title: 'Chief Sales Officer',                  initials: 'ML', email: 'marc@emailagency.com',    photo: '/images/team/marc-loreti.webp' },
   { name: 'Harry Russell',     title: 'Chief Financial Officer',              initials: 'HR', email: 'harry@emailagency.com',   photo: '/images/team/harry-russell.webp' },
   { name: 'Max Ray',           title: 'Chief Growth Officer',                 initials: 'MR', email: 'max@emailagency.com',     photo: '/images/team/max-ray.webp' },
-  { name: 'Mark Muzzini',      title: 'Business Development — Insurance',     initials: 'MM', email: 'markm@emailagency.com',   photo: '/images/team/mark-muzzini.webp' },
+  { name: 'Mark Muzzini',      title: 'Business Development, Insurance',      initials: 'MM', email: 'markm@emailagency.com',   photo: '/images/team/mark-muzzini.webp' },
   { name: 'Dan Robinson',      title: 'VP of Sales',                          initials: 'DR', email: 'dan@emailagency.com',     photo: '/images/team/dan-robinson.webp' },
   { name: 'Shane Bader',       title: 'VP of Operations',                     initials: 'SB', email: 'shane@emailagency.com',   photo: '/images/team/shane-bader.webp' },
   { name: 'Josh Starks',       title: 'Sr. Business Development Manager',     initials: 'JS', email: 'josh@emailagency.com',    photo: '/images/team/josh-starks.webp' },
-  { name: 'Adam Thayer',       title: 'VP — Media Analytics & Client Services', initials: 'AT', email: 'adam@emailagency.com', photo: '/images/team/adam-thayer.webp' },
+  { name: 'Adam Thayer',       title: 'VP, Media Analytics & Client Services', initials: 'AT', email: 'adam@emailagency.com',  photo: '/images/team/adam-thayer.webp' },
   { name: 'Josh Mathews',      title: 'SVP of TV Marketing',                  initials: 'JM', email: 'joshua@emailagency.com',  photo: '/images/team/josh-mathews.webp' },
   { name: 'Jared Cassavechia', title: 'SVP, Media',                           initials: 'JC', email: 'jared@emailagency.com',   photo: '/images/team/jared-cassavechia.webp' },
   { name: 'Brian Remavich',    title: 'Chief Marketing Officer',              initials: 'BR', email: 'brian@emailagency.com',   photo: '/images/team/brian-remavich.webp' },
@@ -44,7 +44,7 @@ const capabilities = [
 export default function TeamPage() {
   usePageMeta(
     'Our Team | InsuranceLogic',
-    'Meet the InsuranceLogic team — the leadership and business development group behind our full-service marketing platform for independent agents.'
+    'Meet the InsuranceLogic team: the leadership and business development group behind our full-service marketing platform for independent agents.'
   )
   const pageRef = useRef(null)
 
@@ -67,7 +67,7 @@ export default function TeamPage() {
       <PageHero bgImage="/images/hero/team.webp">
         <h1 className="page-title">Our Team</h1>
         <h2 className="page-hero-h2">The People Behind <span className="gradient-text">InsuranceLogic</span></h2>
-        <p className="page-lead">InsuranceLogic runs on the same leadership and infrastructure team behind LawLogic and Email Agency Inc. — over 20 years of performance marketing experience, now focused on independent insurance agents.</p>
+        <p className="page-lead">InsuranceLogic runs on the same leadership and infrastructure team behind LawLogic and Email Agency Inc., with over 20 years of performance marketing experience now focused on independent insurance agents.</p>
       </PageHero>
 
       <section className="section">
@@ -82,7 +82,7 @@ export default function TeamPage() {
               <p style={{ color: 'var(--text-soft)', lineHeight: 1.8, fontSize: 17, marginBottom: 20 }}>
                 InsuranceLogic is a full-service marketing platform for independent
                 agents and the agencies that serve them. We're not a startup guessing
-                at lead generation — we're built on infrastructure that has run
+                at lead generation. We're built on infrastructure that has run
                 LawLogic's claimant pipeline for years, adapted for insurance.
               </p>
               <p style={{ color: 'var(--text-soft)', lineHeight: 1.8, fontSize: 17, marginBottom: 32 }}>

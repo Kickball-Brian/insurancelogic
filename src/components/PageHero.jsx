@@ -17,9 +17,9 @@ export default function PageHero({ label, title, subtitle, children, minHeight, 
     if (!bgImage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const ctx = gsap.context(() => {
       gsap.fromTo(ref.current,
-        { backgroundPositionY: '20%' },
+        { backgroundPositionY: '35%' },
         {
-          backgroundPositionY: '80%',
+          backgroundPositionY: '65%',
           ease: 'none',
           scrollTrigger: {
             trigger: ref.current,

@@ -39,8 +39,9 @@ const steps = [
   },
 ]
 
-// Sticky top offsets — navbar ~68px, stack cards 18px apart
-const TOPS = [86, 104, 122, 140]
+// Sticky top offset — same for every card so each one lands flush on top
+// of the last as it scrolls in, instead of cascading down in a staircase.
+const STICKY_TOP = 86
 
 export default function Process() {
   const cardInnerRefs = useRef([])
@@ -53,18 +54,16 @@ export default function Process() {
         const wrap = inner.parentElement
         const rect = wrap.getBoundingClientRect()
         const idx = Number(wrap.dataset.idx)
-        const stickyTop = TOPS[idx]
 
-        const buried = Math.max(0, stickyTop - rect.top)
+        const buried = Math.max(0, STICKY_TOP - rect.top)
         const cardsAbove = cards.length - 1 - idx
         const maxBury = cardsAbove * 18
         const t = maxBury > 0 ? Math.min(buried / maxBury, 1) : 0
 
         const minScale = Math.max(0.88, 1 - 0.04 * cardsAbove)
         const scale = 1 - t * (1 - minScale)
-        const ty = t * cardsAbove * 6
 
-        inner.style.transform = `scale(${scale.toFixed(4)}) translateY(${(-ty).toFixed(2)}px)`
+        inner.style.transform = `scale(${scale.toFixed(4)})`
       })
     }
 
@@ -98,7 +97,7 @@ export default function Process() {
               key={step.num}
               className="process-card-wrap"
               data-idx={i}
-              style={{ top: TOPS[i], zIndex: 10 + i }}
+              style={{ top: STICKY_TOP, zIndex: 10 + i }}
             >
               <div
                 ref={(el) => { cardInnerRefs.current[i] = el }}

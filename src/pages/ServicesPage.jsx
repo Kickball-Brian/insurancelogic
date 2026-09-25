@@ -13,21 +13,25 @@ const services = [
     icon: '🧭',
     title: 'Full-Service Marketing Platform',
     desc: 'Budget in, leads and calls out. We handle paid acquisition, compliant intake, and delivery end to end, so your team spends time selling, not managing vendors.',
+    image: '/images/services/full-service.webp',
   },
   {
     icon: '🔀',
     title: 'Real-Time Routing Technology',
     desc: 'The same infrastructure that powers LawLogic, now consolidated into one platform. Leads and live calls route to the right agent the moment they qualify, across every vertical you write.',
+    image: '/images/services/routing-tech.webp',
   },
   {
     icon: '🎚️',
     title: 'Flexible Criteria & Lead Volume',
     desc: 'Adjust qualifying criteria and volume as your book of business changes. Campaigns are built around what you need this month, not a fixed contract you\'re locked into.',
+    image: '/images/services/flexable-criteria.webp',
   },
   {
     icon: '☎️',
     title: 'Multi-Product Call Monetization',
     desc: 'A single call can qualify for two or three product lines at once, whether that\'s Final Expense and Medicare, or Auto and GAP. We route and monetize the full value of every conversation.',
+    image: '/images/services/call-monetization.webp',
   },
 ]
 
@@ -61,7 +65,17 @@ export default function ServicesPage() {
           <div className="services-full-list">
             {services.map((s) => (
               <div className="service-full-card" key={s.title}>
-                <div className="service-full-icon">{s.icon}</div>
+                <div className="service-full-img-mobile">
+                  {s.image
+                    ? <img src={s.image} alt={s.title} loading="lazy" />
+                    : <div className="service-full-img-placeholder">{s.icon}</div>}
+                </div>
+                <div className="service-full-img-desktop">
+                  {s.image
+                    ? <img src={s.image} alt={s.title} loading="lazy" />
+                    : <div className="service-full-img-placeholder">{s.icon}</div>}
+                  <div className="service-full-img-fade" aria-hidden="true" />
+                </div>
                 <div className="service-full-body">
                   <h2>{s.title}</h2>
                   <p>{s.desc}</p>

@@ -67,8 +67,8 @@ function CompanyIntro() {
 
 export default function HomePage() {
   usePageMeta(
-    'InsuranceLogic — Full-Service Marketing for Independent Agents',
-    'InsuranceLogic turns marketing budget into compliant, verified leads and calls across every insurance vertical we cover — real-time routing, flexible criteria, and multi-product monetization on one platform.'
+    'InsuranceLogic: Full-Service Marketing for Independent Agents',
+    'InsuranceLogic turns marketing budget into compliant, verified leads and calls across every insurance vertical we cover, with real-time routing, flexible criteria, and multi-product monetization on one platform.'
   )
   return (
     <>
