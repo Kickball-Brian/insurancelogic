@@ -110,7 +110,6 @@ export default function Process() {
 
                 <div className="process-card-body">
                   <div className="process-card-text">
-                    <span className="process-card-num">{step.num}</span>
                     <h3 className="process-card-title">{step.title}</h3>
                     <p className="process-card-desc">{step.desc}</p>
                   </div>

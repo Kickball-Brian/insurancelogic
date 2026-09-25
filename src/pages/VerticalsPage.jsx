@@ -49,11 +49,11 @@ export default function VerticalsPage() {
           <div className="services-grid">
             {VERTICALS.map((v) => (
               <div className="service-card vertical-card" key={v.slug}>
-                <div className="vertical-card-img">
-                  {v.image
-                    ? <img src={v.image} alt={v.name} loading="lazy" />
-                    : <div className="vertical-card-img-placeholder">{v.icon}</div>}
-                </div>
+                {v.image && (
+                  <div className="vertical-card-img">
+                    <img src={v.image} alt={v.name} loading="lazy" />
+                  </div>
+                )}
                 <div className="vertical-card-body">
                   <h3>
                     {v.name}

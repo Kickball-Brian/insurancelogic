@@ -1264,6 +1264,13 @@ body::after {
   position: absolute; inset: 0;
   background: linear-gradient(to left, var(--surface) 0%, var(--surface) 6%, transparent 58%);
   pointer-events: none;
+  transition: background 0.3s;
+}
+/* Card background shifts to --surface-2 on hover, so the fade has to match it —
+   otherwise the fade keeps blending to the old --surface color while the card
+   around it changes, leaving a visible seam line right at the fade's edge. */
+.service-full-card:hover .service-full-img-fade {
+  background: linear-gradient(to left, var(--surface-2) 0%, var(--surface-2) 6%, transparent 58%);
 }
 .service-full-img-placeholder {
   width: 100%; height: 100%; min-height: 220px;
@@ -2358,23 +2365,13 @@ body::after {
   justify-content: center;
 }
 
-.process-card-num {
-  font-size: clamp(13px, 1vw, 15px);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--crimson);
-  margin-bottom: 12px;
-  display: block;
-}
-
 .process-card-title {
-  font-size: clamp(17px, 1.6vw, 22px);
+  font-size: clamp(24px, 2.6vw, 34px);
   font-weight: 700;
   color: var(--cream);
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   letter-spacing: -0.02em;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .process-card-desc {
