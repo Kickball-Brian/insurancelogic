@@ -15,19 +15,18 @@ npm run dev
 
 - `/` — Home
 - `/services` — Full-service platform, routing, criteria, multi-product monetization
-- `/verticals` — All nine insurance verticals (Final Expense, Medicare, Life, Annuity*, Home, Mortgage Protection, Auto & Commercial Auto, GAP, Umbrella) — *Annuity flagged "Launching Soon"
+- `/verticals` — Insurance verticals covered (Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto & Commercial Auto, GAP, Umbrella) — list lives in `src/data/verticals.js`, add more there as the business grows
 - `/team` — Leadership team
 - `/compliance` — TCPA/DNC and carrier-compliance framework
 - `/contact` — Contact info
 
 ## Known gaps / next steps
 
-- **Logo**: No designed lockup exists yet. `src/components/Logo.jsx` draws a
-  code-based wordmark (shared triangle mark + "InsuranceLogic" text) as a
-  placeholder — swap in a real logo file when one's designed.
-- **Joey**: Left off the team page pending his confirmation and headshot
-  (he was at a wedding when this draft was built). Add him to the `team`
-  array in `src/pages/TeamPage.jsx` once confirmed.
+- **Logo**: Designed lockup images are in place (`public/images/brand/`),
+  wired up in `src/components/Logo.jsx`.
+- **Joey Marino**: Named as an InsuranceLogic day-to-day lead on the team
+  page's "Our Story" copy, but still left off the `team` array in
+  `src/pages/TeamPage.jsx` pending his title and headshot.
 - **Mark Muzzini's photo**: Reused his existing headshot from the Email
   Agency site — notes say it "stands out poorly." Swap
   `public/images/team/mark-muzzini.webp` once a better one is taken.

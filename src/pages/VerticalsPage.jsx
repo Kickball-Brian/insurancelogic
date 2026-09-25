@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function VerticalsPage() {
   usePageMeta(
     'Insurance Verticals | InsuranceLogic',
-    'InsuranceLogic covers nine verticals — Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto, GAP, and Umbrella — under one marketing platform.'
+    'InsuranceLogic covers Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto, GAP, Umbrella, and more — all under one marketing platform.'
   )
   const pageRef = useRef(null)
 

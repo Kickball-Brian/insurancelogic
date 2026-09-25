@@ -42,7 +42,7 @@ export default function Hero() {
             InsuranceLogic is a full-service marketing platform for independent
             agents and agencies. Send us budget and criteria, we send back
             compliant, verified leads and calls, routed in real time across
-            nine insurance verticals.
+            every insurance vertical we cover.
           </p>
 
           <div className="hero-ctas" style={{ animationDelay: '1.05s' }}>

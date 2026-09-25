@@ -1553,7 +1553,7 @@ body::after {
 .state-detail { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
 
 /* ─── Contact page extras ─── */
-.contact-page-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 72px; align-items: start; max-width: 100%; }
+.contact-page-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 72px; align-items: center; max-width: 100%; }
 @media (max-width: 900px) { .contact-page-grid { grid-template-columns: 1fr; gap: 48px; } }
 .contact-form { display: flex; flex-direction: column; gap: 20px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -1572,19 +1572,18 @@ body::after {
 }
 .form-group textarea { min-height: 130px; resize: vertical; }
 
-.contact-info-list { display: flex; flex-direction: column; gap: 2px; }
-.contact-info-item {
-  background: var(--surface); border: 1px solid var(--border);
-  padding: 22px 24px; display: flex; align-items: flex-start; gap: 16px;
-  transition: background 0.3s;
-}
-.contact-info-item:hover { background: var(--surface-2); }
-.contact-info-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.contact-info-list { display: flex; flex-direction: column; gap: clamp(24px, 3vw, 36px); }
+.contact-info-item { display: block; text-decoration: none; }
 .contact-info-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--crimson-bright); margin-bottom: 5px;
+  display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--crimson-bright); margin-bottom: 6px;
 }
-.contact-info-value { font-size: 14px; color: var(--text-soft); line-height: 1.6; }
+.contact-info-value {
+  display: block; font-family: 'Lingwood', Georgia, serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: var(--cream); line-height: 1.35;
+  transition: opacity 0.2s ease;
+}
+.contact-info-item:hover .contact-info-value { opacity: 0.7; }
 /* Contact page compact notice (inside info column) */
 .contact-attention {
   background: var(--crimson-subtle); border: 1px solid rgba(155,27,48,0.3);

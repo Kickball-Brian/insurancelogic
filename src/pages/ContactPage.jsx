@@ -39,17 +39,14 @@ export default function ContactPage() {
 
             <div className="contact-info-list">
               {[
-                { icon: '📞', label: 'Phone',  value: '(877) 498-3614',       href: 'tel:8774983614' },
-                { icon: '✉️', label: 'Email',  value: 'info@emailagency.com', href: 'mailto:info@emailagency.com' },
-                { icon: '📍', label: 'Office', value: '9141 Delemar Ct\nWellington, FL 33414', href: 'https://maps.google.com/?q=9141+Delemar+Ct+Wellington+FL+33414' },
+                { label: 'Call',   value: '(877) 498-3614',       href: 'tel:8774983614' },
+                { label: 'Send',   value: 'info@emailagency.com', href: 'mailto:info@emailagency.com' },
+                { label: 'Write',  value: '9141 Delemar Ct\nWellington, FL 33414', href: 'https://maps.google.com/?q=9141+Delemar+Ct+Wellington+FL+33414' },
               ].map((item) => (
                 <a href={item.href} key={item.label} className="contact-info-item"
-                   target={item.label === 'Office' ? '_blank' : undefined} rel="noreferrer">
-                  <div className="contact-info-icon">{item.icon}</div>
-                  <div>
-                    <div className="contact-info-label">{item.label}</div>
-                    <div className="contact-info-value" style={{ whiteSpace: 'pre-line' }}>{item.value}</div>
-                  </div>
+                   target={item.label === 'Write' ? '_blank' : undefined} rel="noreferrer">
+                  <span className="contact-info-label">{item.label}</span>
+                  <span className="contact-info-value" style={{ whiteSpace: 'pre-line' }}>{item.value}</span>
                 </a>
               ))}
             </div>

@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const stats = [
   { num: 20, suffix: '+', label: 'Years in Performance Marketing' },
-  { num: 9,  suffix: '',  label: 'Insurance Verticals Covered' },
+  { num: 100, suffix: '%', label: 'TCPA & DNC Compliant Intake' },
   { num: 1,  suffix: '',  label: 'Unified Routing Platform' },
   { num: 2,  suffix: '-3x', label: 'Value Per Multi-Product Call' },
 ]

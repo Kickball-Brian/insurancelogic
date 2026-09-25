@@ -67,8 +67,8 @@ const services = [
   },
   {
     Icon: ServiceIcons.grid,
-    title: 'Nine Insurance Verticals',
-    desc: 'Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto, GAP, and Umbrella. Full coverage under one roof.',
+    title: 'Full Vertical Coverage',
+    desc: 'Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto, GAP, Umbrella, and more. Full coverage under one roof.',
     href: '/verticals',
   },
   {

@@ -10,7 +10,7 @@ function VerticalTicker() {
   const items = VERTICALS.map((v) => v.name)
   return (
     <div className="tort-ticker-wrap" aria-label="Insurance verticals we cover">
-      <div className="tort-ticker-label">9 verticals covered</div>
+      <div className="tort-ticker-label">Verticals covered</div>
       <div className="tort-ticker-track" aria-hidden="true">
         <div className="tort-ticker-inner">
           {[...items, ...items].map((t, i) => (
@@ -68,7 +68,7 @@ function CompanyIntro() {
 export default function HomePage() {
   usePageMeta(
     'InsuranceLogic — Full-Service Marketing for Independent Agents',
-    'InsuranceLogic turns marketing budget into compliant, verified leads and calls across nine insurance verticals — real-time routing, flexible criteria, and multi-product monetization on one platform.'
+    'InsuranceLogic turns marketing budget into compliant, verified leads and calls across every insurance vertical we cover — real-time routing, flexible criteria, and multi-product monetization on one platform.'
   )
   return (
     <>
