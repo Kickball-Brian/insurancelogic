@@ -50,7 +50,7 @@ export default function ServicesPage() {
 
   return (
     <div ref={pageRef}>
-      <PageHero>
+      <PageHero bgImage="/images/hero/services.webp">
         <h1 className="page-title">Our Services</h1>
         <h2 className="page-hero-h2">A Full-Stack Marketing <span className="gradient-text">Platform for Agents</span></h2>
         <p className="page-lead">We built InsuranceLogic around one goal: turning marketing budget into leads and calls that are ready to work, without asking you to manage the machinery behind it.</p>

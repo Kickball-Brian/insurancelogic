@@ -26,7 +26,7 @@ export default function ContactPage() {
 
   return (
     <div ref={pageRef}>
-      <PageHero minHeight="40vh">
+      <PageHero minHeight="40vh" bgImage="/images/hero/contact.webp">
         <h1 className="page-title">Contact</h1>
         <h2 className="page-hero-h2">Let's Talk About <span className="gradient-text">Your Campaign</span></h2>
         <p className="page-lead">Tell us your verticals, qualifying criteria, and volume. Our team will walk through what a campaign looks like on our platform.</p>

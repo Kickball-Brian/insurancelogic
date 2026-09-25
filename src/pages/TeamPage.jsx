@@ -64,7 +64,7 @@ export default function TeamPage() {
 
   return (
     <div ref={pageRef}>
-      <PageHero>
+      <PageHero bgImage="/images/hero/team.webp">
         <h1 className="page-title">Our Team</h1>
         <h2 className="page-hero-h2">The People Behind <span className="gradient-text">InsuranceLogic</span></h2>
         <p className="page-lead">InsuranceLogic runs on the same leadership and infrastructure team behind LawLogic and Email Agency Inc. — over 20 years of performance marketing experience, now focused on independent insurance agents.</p>

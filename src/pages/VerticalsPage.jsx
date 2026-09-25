@@ -33,7 +33,7 @@ export default function VerticalsPage() {
 
   return (
     <div ref={pageRef}>
-      <PageHero>
+      <PageHero bgImage="/images/hero/verticals.webp">
         <h1 className="page-title">Verticals</h1>
         <h2 className="page-hero-h2">Full Coverage, <span className="gradient-text">One Platform</span></h2>
         <p className="page-lead">

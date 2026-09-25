@@ -73,7 +73,7 @@ export default function CompliancePage() {
 
   return (
     <div ref={pageRef}>
-      <PageHero>
+      <PageHero bgImage="/images/hero/compliance.webp">
         <h1 className="page-title">Compliance</h1>
         <h2 className="page-hero-h2">Built In From <span className="gradient-text">the First Call</span></h2>
         <p className="page-lead">

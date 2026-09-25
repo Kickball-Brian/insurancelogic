@@ -40,7 +40,7 @@ export default function PageHero({ label, title, subtitle, children, minHeight, 
     ...(hasBg ? {
       backgroundImage: `${overlay ?? defaultOverlay}, url(${bgImage})`,
       backgroundSize: 'cover',
-      backgroundPosition: 'center',
+      backgroundPosition: 'right center',
       backgroundRepeat: 'no-repeat',
     } : {}),
   }

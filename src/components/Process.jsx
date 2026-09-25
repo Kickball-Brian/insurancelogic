@@ -4,54 +4,38 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const StepIcons = {
-  target: () => (
-    <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>
-    </svg>
-  ),
-  route: () => (
-    <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/>
-      <path d="M9 6h6a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H9"/>
-    </svg>
-  ),
-  phone: () => (
-    <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-    </svg>
-  ),
-  chart: () => (
-    <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-    </svg>
-  ),
-}
-
 const steps = [
   {
     num: '01',
     title: 'Criteria & Campaign Setup',
     desc: 'Tell us your verticals, qualifying criteria, and volume targets. We build the campaign around what you actually want to write, not what\'s easiest to generate.',
-    Icon: StepIcons.target,
+    img: '/images/home/process-1.png',
   },
   {
     num: '02',
     title: 'Compliant Acquisition',
     desc: 'Paid media and affiliate traffic are vetted before they enter the funnel, with TCPA- and DNC-compliant consent capture built into every intake flow.',
-    Icon: StepIcons.phone,
+    img: '/images/home/process-2.png',
   },
   {
     num: '03',
     title: 'Real-Time Routing & Delivery',
     desc: 'Leads and live calls route the moment they qualify, on the same infrastructure that powers LawLogic, now unified into one platform across every vertical.',
-    Icon: StepIcons.route,
+    img: '/images/home/process-3.png',
+    // Source has her head right at the top edge of the frame — a centered
+    // crop clips into it on the shorter mobile banner. Anchoring top keeps
+    // the head in frame and crops the empty desk space at the bottom instead.
+    imgPosition: 'center top',
   },
   {
     num: '04',
     title: 'Reporting & Optimization',
     desc: 'Adjust criteria and volume as your book changes. We tune sourcing and routing continuously instead of locking you into a fixed campaign.',
-    Icon: StepIcons.chart,
+    img: '/images/home/process-4.png',
+    // Overhead shot — the laptop/hands (the actual subject) sit in the
+    // bottom half; the top has a stray blurred object behind her shoulder.
+    // Anchoring bottom keeps the laptop in frame and crops the top instead.
+    imgPosition: 'center bottom',
   },
 ]
 
@@ -121,8 +105,8 @@ export default function Process() {
                 className="process-card"
                 style={{ transformOrigin: 'center top', willChange: 'transform' }}
               >
-                <div className="process-card-img-mobile process-card-icon-panel">
-                  <step.Icon />
+                <div className="process-card-img-mobile">
+                  <img src={step.img} alt={step.title} loading="lazy" style={{ objectPosition: step.imgPosition || 'center' }} />
                 </div>
 
                 <div className="process-card-body">
@@ -132,8 +116,9 @@ export default function Process() {
                     <p className="process-card-desc">{step.desc}</p>
                   </div>
 
-                  <div className="process-card-img-desktop process-card-icon-panel">
-                    <step.Icon />
+                  <div className="process-card-img-desktop">
+                    <img src={step.img} alt={step.title} loading="lazy" style={{ objectPosition: step.imgPosition || 'center' }} />
+                    <div className="process-card-img-fade" aria-hidden="true" />
                   </div>
                 </div>
               </div>
