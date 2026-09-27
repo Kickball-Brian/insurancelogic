@@ -50,7 +50,14 @@ export default function Hero() {
           full hero so it reacts anywhere you hover, not just near the mark.
           Also flips whichever headline word is under the cursor to red via
           textHoverTarget — the canvas itself stays pointer-events:none. */}
-      <TriangleGrid className="hero-triangle-grid" color="#9B1B30" glowColor="#ffffff" textHoverTarget=".hero-word" />
+      <TriangleGrid
+        className="hero-triangle-grid"
+        color="#9B1B30"
+        glowColor="#ffffff"
+        textHoverTarget=".hero-word"
+        markHoverTarget=".hero-mark"
+        markGlowColor="#C41E3A"
+      />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="hero-content">

@@ -26,7 +26,7 @@ export default function Footer() {
               <li><Link to="/services">Services</Link></li>
               <li><Link to="/verticals">Verticals</Link></li>
               <li><Link to="/compliance">Compliance</Link></li>
-              <li><Link to="/about-us">Our Team</Link></li>
+              <li><Link to="/about-us">About Us</Link></li>
               <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
@@ -69,7 +69,7 @@ export default function Footer() {
               <Link to="/services" className="footer-pill">Services</Link>
               <Link to="/verticals" className="footer-pill">Verticals</Link>
               <Link to="/compliance" className="footer-pill">Compliance</Link>
-              <Link to="/about-us" className="footer-pill">Our Team</Link>
+              <Link to="/about-us" className="footer-pill">About Us</Link>
               <Link to="/contact" className="footer-pill">Contact</Link>
             </div>
           </div>

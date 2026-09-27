@@ -12,6 +12,10 @@ import { gsap } from 'gsap'
  * just its bounding box — gets `textHoverClass` toggled on it directly, so a
  * plain CSS transition can swap that element's own color (e.g. white → red)
  * independent of anything drawn on the canvas.
+ *
+ * `markHoverTarget` + `markGlowColor`: same hit-test, but instead swaps the
+ * canvas lens's own color while the cursor sits over that element (e.g. the
+ * logo mark) — so the mesh glows `markGlowColor` there instead of `glowColor`.
  */
 export default function TriangleGrid({
   color = '#9B1B30',
@@ -20,6 +24,8 @@ export default function TriangleGrid({
   glowRadius = 240,
   textHoverTarget = null,
   textHoverClass = 'is-hot',
+  markHoverTarget = null,
+  markGlowColor = null,
   className = '',
   style = {},
 }) {
@@ -42,6 +48,7 @@ export default function TriangleGrid({
     const pointer = { x: -9999, y: -9999, active: false }
     const lens = { x: -9999, y: -9999 }
     let hotEl = null
+    let overMark = false
 
     function buildMesh() {
       const triHeight = triangleBase * Math.sqrt(3) / 2
@@ -94,8 +101,9 @@ export default function TriangleGrid({
       // centered on the (lerped) cursor so it fades to nothing at the edge
       // instead of cutting off hard.
       if (lens.x > -9000) {
+        const activeGlow = (overMark && markGlowColor) ? markGlowColor : glowColor
         const grad = ctx.createRadialGradient(lens.x, lens.y, 0, lens.x, lens.y, glowRadius)
-        grad.addColorStop(0, glowColor)
+        grad.addColorStop(0, activeGlow)
         grad.addColorStop(1, 'rgba(255,255,255,0)')
         ctx.lineWidth = 1.4
         ctx.strokeStyle = grad
@@ -143,12 +151,20 @@ export default function TriangleGrid({
       pointer.x = x
       pointer.y = y
 
-      if (textHoverTarget) {
-        const match = document.elementFromPoint(e.clientX, e.clientY)?.closest(textHoverTarget) ?? null
-        if (match !== hotEl) {
-          hotEl?.classList.remove(textHoverClass)
-          match?.classList.add(textHoverClass)
-          hotEl = match
+      if (textHoverTarget || markHoverTarget) {
+        const atPoint = document.elementFromPoint(e.clientX, e.clientY)
+
+        if (textHoverTarget) {
+          const match = atPoint?.closest(textHoverTarget) ?? null
+          if (match !== hotEl) {
+            hotEl?.classList.remove(textHoverClass)
+            match?.classList.add(textHoverClass)
+            hotEl = match
+          }
+        }
+
+        if (markHoverTarget) {
+          overMark = !!atPoint?.closest(markHoverTarget)
         }
       }
 
@@ -167,7 +183,7 @@ export default function TriangleGrid({
       exitTween?.kill()
       hotEl?.classList.remove(textHoverClass)
     }
-  }, [color, glowColor, triangleBase, glowRadius, textHoverTarget, textHoverClass])
+  }, [color, glowColor, triangleBase, glowRadius, textHoverTarget, textHoverClass, markHoverTarget, markGlowColor])
 
   return (
     <div ref={wrapRef} className={`triangle-grid ${className}`} style={{ pointerEvents: 'none', ...style }} aria-hidden="true">

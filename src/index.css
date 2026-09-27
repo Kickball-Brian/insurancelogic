@@ -222,15 +222,19 @@ body::after {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-/* H1s inside a photo hero (PageHero with bgImage) sit on top of whatever
-   the photo looks like there, so the crimson gradient fill alone can lose
-   definition depending on what's behind it. A thin white outline keeps the
-   glyph shape readable regardless of the photo underneath. Scoped to
-   .page-hero--img only — the homepage hero's gradient text sits on the
-   plain cream background and doesn't need it (a white stroke there just
-   washes the red out). */
+/* H1s inside a photo hero (PageHero with bgImage) sit on top of whatever the
+   photo looks like there, so the crimson fill alone can lose definition
+   depending on what's behind it. A soft white glow keeps it readable without
+   losing the red — Lingwood's strokes are thin enough at this size that a
+   hard 1px outline (via -webkit-text-stroke or offset text-shadows) fully
+   covers the glyph and reads as solid white instead of red. A blurred,
+   no-offset glow sits around the letterform instead of painting over it.
+   Scoped to .page-hero--img only — the homepage hero's gradient text sits on
+   the plain cream background and doesn't need it. */
 .page-hero--img h1 .gradient-text {
-  -webkit-text-stroke: 1px #fff;
+  text-shadow:
+    0 0 3px rgba(255,255,255,0.85),
+    0 0 7px rgba(255,255,255,0.5);
 }
 
 /* ─── Buttons ─── */
@@ -452,7 +456,7 @@ body::after {
 }
 .hero .hero-scroll-hint { color: rgba(255,255,255,0.5); }
 .hero .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.35); }
-.hero .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
+.hero .btn-ghost:hover { background: transparent; border-color: #ac2428; color: #ac2428; }
 .hero > .container {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
