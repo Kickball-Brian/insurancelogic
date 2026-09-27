@@ -22,7 +22,7 @@ const routes = [
   '/',
   '/services',
   '/verticals',
-  '/team',
+  '/about-us',
   '/compliance',
   '/contact',
 ]

@@ -22,6 +22,7 @@
   --crimson-glow:    rgba(155, 27, 48, 0.2);
   --crimson-subtle:  rgba(155, 27, 48, 0.07);
   --cream:           #1D242D;
+  --ink:             #141010; /* brand black — homepage hero, matches the footer's dark surface */
   --text-muted:      #5C6670;
   --text-soft:       #3E4A56;
   --border:          rgba(29, 36, 45, 0.1);
@@ -220,6 +221,16 @@ body::after {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+/* H1s inside a photo hero (PageHero with bgImage) sit on top of whatever
+   the photo looks like there, so the crimson gradient fill alone can lose
+   definition depending on what's behind it. A thin white outline keeps the
+   glyph shape readable regardless of the photo underneath. Scoped to
+   .page-hero--img only — the homepage hero's gradient text sits on the
+   plain cream background and doesn't need it (a white stroke there just
+   washes the red out). */
+.page-hero--img h1 .gradient-text {
+  -webkit-text-stroke: 1px #fff;
 }
 
 /* ─── Buttons ─── */
@@ -436,12 +447,12 @@ body::after {
 .hero {
   position: relative; min-height: 100dvh;
   display: flex; align-items: center; overflow: hidden;
-  background: var(--bg);
-  color: var(--cream);
+  background: var(--ink);
+  color: #fff;
 }
-.hero .hero-scroll-hint { color: var(--text-muted); }
-.hero .btn-ghost { color: var(--cream); border-color: rgba(29,36,45,0.35); }
-.hero .btn-ghost:hover { background: rgba(29,36,45,0.06); border-color: rgba(29,36,45,0.6); }
+.hero .hero-scroll-hint { color: rgba(255,255,255,0.5); }
+.hero .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.35); }
+.hero .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.6); }
 .hero > .container {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -459,30 +470,25 @@ body::after {
 .hero-visual { grid-column: 2; display: flex; justify-content: center; align-items: center; }
 .hero-visual svg { width: 288px; height: auto; }
 
-/* ── Cursor dot-lens field (DotLens.jsx) — full-bleed across the whole hero
-   (including hero-content) so the lens reacts no matter where you hover,
-   not just near the mark ── */
-.hero-dot-lens {
+/* ── Cursor triangle-grid lens (TriangleGrid.jsx) — full-bleed across the
+   whole hero (including hero-content) so the lens reacts no matter where you
+   hover. Sits behind .container (z-index:1) — the mark is a static white
+   fill now, so unlike the old dot-lens it doesn't need to render on top. ── */
+.hero-triangle-grid {
   position: absolute;
   inset: 0;
-  /* Above .container (z-index:1) so lit dots render on top of the hero
-     mark's SVG instead of being hidden behind its opaque fill — this
-     matters most for the white-on-red hover state, which was invisible
-     underneath the mark before. Canvas stays pointer-events:none, so
-     sitting on top never blocks clicks on the text/buttons below it. */
-  z-index: 2;
+  z-index: 0;
 }
-.hero-dot-lens canvas { display: block; width: 100%; height: 100%; }
+.hero-triangle-grid canvas { display: block; width: 100%; height: 100%; }
 
 @media (max-width: 900px) {
   .hero-visual { display: none; }
-  .hero-dot-lens { display: none; }
+  .hero-triangle-grid { display: none; }
 }
 @media (max-width: 768px) {
   .hero > .container { grid-template-columns: 1fr; }
   .hero-content { text-align: center; margin: 0 auto; }
   .hero-sub { margin-left: auto; margin-right: auto; }
-  .hero-ctas { justify-content: center; margin-left: auto; margin-right: auto; }
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 9px;
@@ -500,13 +506,23 @@ body::after {
   font-family: 'Lingwood', serif;
   font-size: clamp(38px, 7vw, 82px);
   font-weight: 800; letter-spacing: -0.03em; line-height: 1.15;
-  margin-bottom: 28px; color: var(--cream);
+  margin-bottom: 28px; color: #fff;
 }
+/* Whichever word the cursor sits over (see TriangleGrid's textHoverTarget)
+   flips to brand red — the inverse of the mesh's red-to-white lens. */
+.hero-word { transition: color 0.25s ease; }
+.hero-word.is-hot { color: var(--crimson-bright); }
 .hero-sub {
-  font-size: clamp(16px, 2.2vw, 20px); color: var(--cream);
+  font-size: clamp(16px, 2.2vw, 20px); color: rgba(255,255,255,0.8);
   line-height: 1.75; max-width: 600px; margin: 0 0 44px 0;
 }
 .hero-ctas { display: flex; align-items: center; justify-content: flex-start; gap: 16px; flex-wrap: wrap; margin: 0 0 52px 0; }
+/* Placed after the base rule (not in the earlier mobile block above) since
+   an equal-specificity override earlier in the cascade than the rule it's
+   meant to beat loses to it — this one previously never actually applied. */
+@media (max-width: 768px) {
+  .hero-ctas { justify-content: center; }
+}
 .hero-firms { border-top: 1px solid var(--border); padding-top: 28px; }
 .firms-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 16px; }
 .firms-list { display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap; }
@@ -520,6 +536,10 @@ body::after {
   width: 1px; height: 40px;
   background: linear-gradient(to bottom, var(--crimson), transparent);
   animation: scrollLine 2s ease-in-out infinite;
+}
+@media (max-width: 768px) {
+  /* Drop the "Scroll" label on mobile, keep the animated red line. */
+  .hero-scroll-hint .scroll-label { display: none; }
 }
 
 /* ─── Page Hero (inner pages) ─── */

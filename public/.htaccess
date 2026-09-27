@@ -13,7 +13,7 @@ RewriteBase /
 # directly without hitting rewrite rules at all.
 RewriteRule ^services/?$ /prerendered/services.html [L]
 RewriteRule ^verticals/?$ /prerendered/verticals.html [L]
-RewriteRule ^team/?$ /prerendered/team.html [L]
+RewriteRule ^about-us/?$ /prerendered/about-us.html [L]
 RewriteRule ^compliance/?$ /prerendered/compliance.html [L]
 RewriteRule ^contact/?$ /prerendered/contact.html [L]
 

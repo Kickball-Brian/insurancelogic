@@ -8,7 +8,7 @@ const LINKS = [
   { label: 'Services',   to: '/services' },
   { label: 'Verticals',  to: '/verticals' },
   { label: 'Compliance', to: '/compliance' },
-  { label: 'Our Team',   to: '/team' },
+  { label: 'Our Team',   to: '/about-us' },
   { label: 'Contact',    to: '/contact' },
 ]
 

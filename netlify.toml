@@ -28,8 +28,8 @@
   to = "/prerendered/verticals.html"
   status = 200
 [[redirects]]
-  from = "/team"
-  to = "/prerendered/team.html"
+  from = "/about-us"
+  to = "/prerendered/about-us.html"
   status = 200
 [[redirects]]
   from = "/compliance"

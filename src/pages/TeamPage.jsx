@@ -65,8 +65,7 @@ export default function TeamPage() {
   return (
     <div ref={pageRef}>
       <PageHero bgImage="/images/hero/team.webp">
-        <h1 className="page-title">Our Team</h1>
-        <h2 className="page-hero-h2">The People Behind <span className="gradient-text">InsuranceLogic</span></h2>
+        <h1 className="page-hero-h2">The People Behind <span className="gradient-text">InsuranceLogic</span></h1>
         <p className="page-lead">InsuranceLogic runs on the same leadership and infrastructure team behind LawLogic and Email Agency Inc., with over 20 years of performance marketing experience now focused on independent insurance agents.</p>
       </PageHero>
 
@@ -100,13 +99,7 @@ export default function TeamPage() {
             </div>
 
             <div className="about-story-image-placeholder">
-              <div className="company-intro-brand-card" style={{ width: '100%', height: '100%' }}>
-                <svg viewBox="40 110 640 510" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ width: '55%' }}>
-                  <path fill="#ad2228" d="M389.5,226.44c-89.04,18.71-186.88,20.23-275.86,5.88-11.97-1.93-22.86-4.15-34.73-6.78-13.11-20.48-25.52-40.92-32.23-64.58-4.44-17.69-3.26-37.21,16.99-43.4,12.58-3.85,25.33-2.71,38.13.45,93.5,23.07,237.33,20.45,334.76,15.49,66.51-3.48,131.95-9.16,199.18-16.68-73.35,55.08-156.82,90.82-246.25,109.61Z"/>
-                  <path fill="#ad2228" d="M142.83,330.11c53.42-.05,105.11-3.66,157.02-13.03,56.78-10.07,112.15-26.4,165.05-49.45,46.97-20.57,91.4-46.03,132.04-77.07,22.08-16.28,41.3-34.81,61.34-54.16-59.33,94.79-140.56,173.17-236.02,230.24-45.83,27.3-94.2,49.46-144.79,65.93-19.87,6.31-39.43,11.73-60.1,15.65l-74.53-118.12Z"/>
-                  <path fill="#ad2228" d="M407.2,574.56c-18.92,25.99-52.22,54.48-85.67,36.16l-56.07-89.32c27.77-12.18,54.22-26.09,80.32-42.08,27.32-16.8,53.56-34.91,78.91-54.58,49.35-37.24,93.1-78.62,137.71-123.16l-140.9,248.64-14.31,24.34Z"/>
-                </svg>
-              </div>
+              <img src="/images/team/our-story.webp" alt="The InsuranceLogic team reviewing campaign performance" className="about-story-img" />
             </div>
           </div>
         </div>

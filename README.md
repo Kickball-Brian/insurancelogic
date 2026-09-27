@@ -16,7 +16,7 @@ npm run dev
 - `/` — Home
 - `/services` — Full-service platform, routing, criteria, multi-product monetization
 - `/verticals` — Insurance verticals covered (Final Expense, Medicare, Life, Annuity, Home, Mortgage Protection, Auto & Commercial Auto, GAP, Umbrella) — list lives in `src/data/verticals.js`, add more there as the business grows
-- `/team` — Leadership team
+- `/about-us` — Leadership team
 - `/compliance` — TCPA/DNC and carrier-compliance framework
 - `/contact` — Contact info
 

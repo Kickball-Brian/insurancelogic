@@ -75,7 +75,7 @@ function AppContent() {
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/verticals" element={<VerticalsPage />} />
-            <Route path="/team" element={<TeamPage />} />
+            <Route path="/about-us" element={<TeamPage />} />
             <Route path="/compliance" element={<CompliancePage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFoundPage />} />
