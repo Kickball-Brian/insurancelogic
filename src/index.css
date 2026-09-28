@@ -264,7 +264,13 @@ body::after {
   color: var(--text-soft);
   border: 1px solid var(--border);
 }
-.btn-ghost:hover { border-color: var(--crimson); color: var(--cream); }
+.btn-ghost:hover {
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px var(--crimson-glow);
+}
 .btn-outline {
   background: transparent;
   color: var(--crimson-bright);
@@ -456,7 +462,13 @@ body::after {
 }
 .hero .hero-scroll-hint { color: rgba(255,255,255,0.5); }
 .hero .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.35); }
-.hero .btn-ghost:hover { background: transparent; border-color: #ac2428; color: #ac2428; }
+.hero .btn-ghost:hover {
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px var(--crimson-glow);
+}
 .hero > .container {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -485,9 +497,23 @@ body::after {
 }
 .hero-triangle-grid canvas { display: block; width: 100%; height: 100%; }
 
+/* Shine-through layer (TriangleGrid's maskTarget/maskShape) — same mesh,
+   masked down to the logo mark's own silhouette, stacked above .container
+   (z-index:1) so it's visible crossing over the mark's white fill instead
+   of being covered by it. Positioned in its own stacking context (a sibling
+   of .hero-triangle-grid, not a child) since z-index inside an absolutely
+   positioned parent can never escape that parent's own stacking slot. */
+.hero-triangle-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.hero-triangle-shine canvas { display: block; width: 100%; height: 100%; }
+
 @media (max-width: 900px) {
   .hero-visual { display: none; }
   .hero-triangle-grid { display: none; }
+  .hero-triangle-shine { display: none; }
 }
 @media (max-width: 768px) {
   .hero > .container { grid-template-columns: 1fr; }
@@ -541,10 +567,7 @@ body::after {
   background: linear-gradient(to bottom, var(--crimson), transparent);
   animation: scrollLine 2s ease-in-out infinite;
 }
-@media (max-width: 768px) {
-  /* Drop the "Scroll" label on mobile, keep the animated red line. */
-  .hero-scroll-hint .scroll-label { display: none; }
-}
+.scroll-label { display: none; }
 
 /* ─── Page Hero (inner pages) ─── */
 .page-hero {
@@ -588,8 +611,9 @@ body::after {
   color: #fff;
 }
 .page-hero--img .btn-ghost:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: #fff;
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff;
 }
 /* Dark-text variant — for white/light overlays */
 .page-hero--dark-text.page-hero--img .section-label { color: var(--text-muted); border-color: var(--border); }
@@ -1265,7 +1289,7 @@ body::after {
 /* ─── Services Full Page ───
    Image panel on the left (desktop), moving above the text on mobile —
    same dual mobile/desktop image pattern as the homepage Process cards. */
-.services-full-list { display: flex; flex-direction: column; gap: 2px; }
+.services-full-list { display: flex; flex-direction: column; gap: 20px; }
 .service-full-card {
   background: var(--surface); border: 1px solid var(--border);
   display: flex; align-items: stretch;
@@ -1430,18 +1454,9 @@ body::after {
   padding: 28px 32px;
   will-change: clip-path;
 }
-.cf-card-num {
-  display: block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--crimson);
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
 .cf-card-title {
   font-family: 'Lingwood', Georgia, serif;
-  font-size: clamp(17px, 1.5vw, 19px);
+  font-size: clamp(21px, 2vw, 25px);
   font-weight: 400;
   color: var(--cream);
   margin-bottom: 10px;

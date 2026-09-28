@@ -38,8 +38,8 @@ export default function Contact() {
               </Link>
             </MagneticBtn>
             <MagneticBtn>
-              <a href="tel:8774983614" className="btn btn-ghost" style={{ fontSize: 16, padding: '16px 36px' }}>
-                (877) 498-3614
+              <a href="tel:8776746366" className="btn btn-ghost" style={{ fontSize: 16, padding: '16px 36px' }}>
+                (877) 674-6366
               </a>
             </MagneticBtn>
           </div>

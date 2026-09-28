@@ -106,7 +106,7 @@ export default function Navbar() {
           </nav>
 
           <div className="nav-overlay-footer">
-            <a href="tel:8774983614" className="overlay-phone">(877) 498-3614</a>
+            <a href="tel:8776746366" className="overlay-phone">(877) 674-6366</a>
           </div>
         </div>
       </motion.aside>

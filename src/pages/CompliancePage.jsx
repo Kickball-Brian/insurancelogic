@@ -120,7 +120,6 @@ export default function CompliancePage() {
           <div className="cf-grid">
             {frameworkItems.map((item) => (
               <div key={item.num} className="cf-card">
-                <span className="cf-card-num">{item.num}</span>
                 <h3 className="cf-card-title">{item.title}</h3>
                 <p className="cf-card-body">{item.body}</p>
               </div>
@@ -155,7 +154,7 @@ export default function CompliancePage() {
             </p>
             <div className="contact-ctas">
               <MagneticBtn><Link to="/contact" className="btn btn-primary" style={{ fontSize: 16, padding: '16px 36px' }}>Contact Us</Link></MagneticBtn>
-              <MagneticBtn><a href="tel:8774983614" className="btn btn-ghost" style={{ fontSize: 16, padding: '16px 36px' }}>(877) 498-3614</a></MagneticBtn>
+              <MagneticBtn><a href="tel:8776746366" className="btn btn-ghost" style={{ fontSize: 16, padding: '16px 36px' }}>(877) 674-6366</a></MagneticBtn>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function ContactPage() {
   usePageMeta(
     'Contact InsuranceLogic | Get in Touch',
-    'Talk to the InsuranceLogic team about your verticals, criteria, and volume. Call (877) 498-3614 or email info@emailagency.com.'
+    'Talk to the InsuranceLogic team about your verticals, criteria, and volume. Call (877) 674-6366 or email info@emailagency.com.'
   )
   const pageRef = useRef(null)
 
@@ -39,7 +39,7 @@ export default function ContactPage() {
 
             <div className="contact-info-list">
               {[
-                { label: 'Call',   value: '(877) 498-3614',       href: 'tel:8774983614' },
+                { label: 'Call',   value: '(877) 674-6366',       href: 'tel:8776746366' },
                 { label: 'Send',   value: 'info@emailagency.com', href: 'mailto:info@emailagency.com' },
                 { label: 'Write',  value: '9141 Delemar Ct\nWellington, FL 33414', href: 'https://maps.google.com/?q=9141+Delemar+Ct+Wellington+FL+33414' },
               ].map((item) => (

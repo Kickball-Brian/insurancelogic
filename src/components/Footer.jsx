@@ -45,7 +45,7 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Contact</h4>
             <ul>
-              <li><a href="tel:8774983614">(877) 498-3614</a></li>
+              <li><a href="tel:8776746366">(877) 674-6366</a></li>
               <li><a href="mailto:info@emailagency.com">info@emailagency.com</a></li>
               <li><a href="https://maps.google.com/?q=9141+Delemar+Ct+Wellington+FL+33414" target="_blank" rel="noreferrer">Wellington, FL 33414</a></li>
               <li><a href="https://emailagency.com" target="_blank" rel="noreferrer">Email Agency</a></li>
@@ -77,7 +77,7 @@ export default function Footer() {
           <div className="footer-pill-group">
             <span className="footer-pill-label">Contact</span>
             <div className="footer-pills">
-              <a href="tel:8774983614" className="footer-pill">(877) 498-3614</a>
+              <a href="tel:8776746366" className="footer-pill">(877) 674-6366</a>
               <a href="mailto:info@emailagency.com" className="footer-pill">info@emailagency.com</a>
             </div>
           </div>

@@ -5,6 +5,13 @@ import MagneticBtn from './MagneticBtn'
 
 const WORDS = ['Full-Service', 'Insurance', 'Marketing']
 
+const MARK_VIEWBOX = '40 110 640 510'
+const MARK_PATHS = [
+  'M389.5,226.44c-89.04,18.71-186.88,20.23-275.86,5.88-11.97-1.93-22.86-4.15-34.73-6.78-13.11-20.48-25.52-40.92-32.23-64.58-4.44-17.69-3.26-37.21,16.99-43.4,12.58-3.85,25.33-2.71,38.13.45,93.5,23.07,237.33,20.45,334.76,15.49,66.51-3.48,131.95-9.16,199.18-16.68-73.35,55.08-156.82,90.82-246.25,109.61Z',
+  'M142.83,330.11c53.42-.05,105.11-3.66,157.02-13.03,56.78-10.07,112.15-26.4,165.05-49.45,46.97-20.57,91.4-46.03,132.04-77.07,22.08-16.28,41.3-34.81,61.34-54.16-59.33,94.79-140.56,173.17-236.02,230.24-45.83,27.3-94.2,49.46-144.79,65.93-19.87,6.31-39.43,11.73-60.1,15.65l-74.53-118.12Z',
+  'M407.2,574.56c-18.92,25.99-52.22,54.48-85.67,36.16l-56.07-89.32c27.77-12.18,54.22-26.09,80.32-42.08,27.32-16.8,53.56-34.91,78.91-54.58,49.35-37.24,93.1-78.62,137.71-123.16l-140.9,248.64-14.31,24.34Z',
+]
+
 export default function Hero() {
   let charCount = 0
   const heroRef = useRef(null)
@@ -49,7 +56,11 @@ export default function Hero() {
           sits (same lerped-lens feel as the old DotLens halftone). Spans the
           full hero so it reacts anywhere you hover, not just near the mark.
           Also flips whichever headline word is under the cursor to red via
-          textHoverTarget — the canvas itself stays pointer-events:none. */}
+          textHoverTarget — the canvas itself stays pointer-events:none.
+          maskTarget/maskShape additionally shines an identical, perfectly
+          aligned copy of the same mesh through the logo mark's own
+          silhouette (see .hero-mark below), instead of the mark just
+          sitting on top as a flat opaque cutout. */}
       <TriangleGrid
         className="hero-triangle-grid"
         color="#9B1B30"
@@ -57,6 +68,8 @@ export default function Hero() {
         textHoverTarget=".hero-word"
         markHoverTarget=".hero-mark"
         markGlowColor="#C41E3A"
+        maskTarget=".hero-mark"
+        maskShape={{ viewBox: MARK_VIEWBOX, paths: MARK_PATHS }}
       />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -97,10 +110,8 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual" aria-hidden="true">
-          <svg className="hero-mark" viewBox="40 110 640 510" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#fff" d="M389.5,226.44c-89.04,18.71-186.88,20.23-275.86,5.88-11.97-1.93-22.86-4.15-34.73-6.78-13.11-20.48-25.52-40.92-32.23-64.58-4.44-17.69-3.26-37.21,16.99-43.4,12.58-3.85,25.33-2.71,38.13.45,93.5,23.07,237.33,20.45,334.76,15.49,66.51-3.48,131.95-9.16,199.18-16.68-73.35,55.08-156.82,90.82-246.25,109.61Z"/>
-            <path fill="#fff" d="M142.83,330.11c53.42-.05,105.11-3.66,157.02-13.03,56.78-10.07,112.15-26.4,165.05-49.45,46.97-20.57,91.4-46.03,132.04-77.07,22.08-16.28,41.3-34.81,61.34-54.16-59.33,94.79-140.56,173.17-236.02,230.24-45.83,27.3-94.2,49.46-144.79,65.93-19.87,6.31-39.43,11.73-60.1,15.65l-74.53-118.12Z"/>
-            <path fill="#fff" d="M407.2,574.56c-18.92,25.99-52.22,54.48-85.67,36.16l-56.07-89.32c27.77-12.18,54.22-26.09,80.32-42.08,27.32-16.8,53.56-34.91,78.91-54.58,49.35-37.24,93.1-78.62,137.71-123.16l-140.9,248.64-14.31,24.34Z"/>
+          <svg className="hero-mark" viewBox={MARK_VIEWBOX} xmlns="http://www.w3.org/2000/svg">
+            {MARK_PATHS.map((d) => <path key={d} fill="#fff" d={d} />)}
           </svg>
         </div>
       </div>
