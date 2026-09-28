@@ -56,20 +56,14 @@ export default function Hero() {
           sits (same lerped-lens feel as the old DotLens halftone). Spans the
           full hero so it reacts anywhere you hover, not just near the mark.
           Also flips whichever headline word is under the cursor to red via
-          textHoverTarget — the canvas itself stays pointer-events:none.
-          maskTarget/maskShape additionally shines an identical, perfectly
-          aligned copy of the same mesh through the logo mark's own
-          silhouette (see .hero-mark below), instead of the mark just
-          sitting on top as a flat opaque cutout. */}
+          textHoverTarget — the canvas itself stays pointer-events:none. The
+          logo mark sits above this mesh as a flat, solid-red opaque shape
+          (see .hero-mark below) — the mesh never shows through it. */}
       <TriangleGrid
         className="hero-triangle-grid"
         color="#9B1B30"
         glowColor="#ffffff"
         textHoverTarget=".hero-word"
-        markHoverTarget=".hero-mark"
-        markGlowColor="#C41E3A"
-        maskTarget=".hero-mark"
-        maskShape={{ viewBox: MARK_VIEWBOX, paths: MARK_PATHS }}
       />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
@@ -111,7 +105,7 @@ export default function Hero() {
 
         <div className="hero-visual" aria-hidden="true">
           <svg className="hero-mark" viewBox={MARK_VIEWBOX} xmlns="http://www.w3.org/2000/svg">
-            {MARK_PATHS.map((d) => <path key={d} fill="#fff" d={d} />)}
+            {MARK_PATHS.map((d) => <path key={d} fill="#9B1B30" d={d} />)}
           </svg>
         </div>
       </div>

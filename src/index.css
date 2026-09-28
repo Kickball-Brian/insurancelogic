@@ -488,8 +488,8 @@ body::after {
 
 /* ── Cursor triangle-grid lens (TriangleGrid.jsx) — full-bleed across the
    whole hero (including hero-content) so the lens reacts no matter where you
-   hover. Sits behind .container (z-index:1) — the mark is a static white
-   fill now, so unlike the old dot-lens it doesn't need to render on top. ── */
+   hover. Sits behind .container (z-index:1) — the mark is a solid red fill,
+   so it sits opaque on top of the mesh, not blended with it. ── */
 .hero-triangle-grid {
   position: absolute;
   inset: 0;
@@ -497,23 +497,9 @@ body::after {
 }
 .hero-triangle-grid canvas { display: block; width: 100%; height: 100%; }
 
-/* Shine-through layer (TriangleGrid's maskTarget/maskShape) — same mesh,
-   masked down to the logo mark's own silhouette, stacked above .container
-   (z-index:1) so it's visible crossing over the mark's white fill instead
-   of being covered by it. Positioned in its own stacking context (a sibling
-   of .hero-triangle-grid, not a child) since z-index inside an absolutely
-   positioned parent can never escape that parent's own stacking slot. */
-.hero-triangle-shine {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-.hero-triangle-shine canvas { display: block; width: 100%; height: 100%; }
-
 @media (max-width: 900px) {
   .hero-visual { display: none; }
   .hero-triangle-grid { display: none; }
-  .hero-triangle-shine { display: none; }
 }
 @media (max-width: 768px) {
   .hero > .container { grid-template-columns: 1fr; }
