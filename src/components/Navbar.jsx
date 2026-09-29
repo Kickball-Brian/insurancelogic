@@ -1,6 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import Logo from './Logo'
 
 const LINKS = [
@@ -32,28 +31,30 @@ function HamburgerIcon({ onClick, isOpen }) {
 
 // ── Main Navbar ───────────────────────────────────────────────────────────────
 export default function Navbar() {
-  const { scrollY } = useScroll()
   const [hidden,   setHidden]   = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  useMotionValueEvent(scrollY, 'change', (current) => {
-    const prev = scrollY.getPrevious() ?? 0
-    if (current > prev && current > 150 && !menuOpen) setHidden(true)
-    else setHidden(false)
-    setScrolled(current > 60)
-  })
+  // Hide on scroll down past 150px, show on any scroll up. Lenis drives real
+  // scroll events, so a plain window listener sees every step.
+  useEffect(() => {
+    let prev = window.scrollY
+    const onScroll = () => {
+      const current = window.scrollY
+      setHidden(current > prev && current > 150 && !menuOpen)
+      setScrolled(current > 60)
+      prev = current
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [menuOpen])
 
   const close = () => setMenuOpen(false)
 
   return (
     <>
       {/* ── Fixed bar ── */}
-      <motion.nav
-        className={`navbar solid${scrolled ? ' scrolled' : ''}`}
-        animate={{ y: hidden ? -120 : 0 }}
-        transition={{ duration: 0.32, ease: 'easeInOut' }}
-      >
+      <nav className={`navbar solid${scrolled ? ' scrolled' : ''}${hidden ? ' is-hidden' : ''}`}>
         <div className="container">
           <Link to="/" className="nav-logo" aria-label="InsuranceLogic home" onClick={close}>
             <Logo variant="dark" />
@@ -64,29 +65,21 @@ export default function Navbar() {
             isOpen={menuOpen}
           />
         </div>
-      </motion.nav>
+      </nav>
 
       {/* ── Overlay ──
           Always mounted (not {menuOpen && ...}) so every nav link inside
           is real DOM content on every page load, not just once a visitor
           clicks the hamburger open. No crawler clicks buttons. See
           docs/crawlability-prerendering-fix.md. */}
-      <motion.div
-        className="nav-overlay-backdrop"
-        initial={false}
-        animate={{ opacity: menuOpen ? 1 : 0 }}
-        transition={{ duration: 0.25 }}
-        style={{ pointerEvents: menuOpen ? 'auto' : 'none' }}
+      <div
+        className={`nav-overlay-backdrop${menuOpen ? ' is-open' : ''}`}
         onClick={close}
         aria-hidden="true"
       />
 
-      <motion.aside
-        className="nav-overlay-panel"
-        initial={false}
-        animate={{ opacity: menuOpen ? 1 : 0, x: menuOpen ? 0 : 40 }}
-        transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
-        style={{ pointerEvents: menuOpen ? 'auto' : 'none' }}
+      <aside
+        className={`nav-overlay-panel${menuOpen ? ' is-open' : ''}`}
         aria-label="Site navigation"
         inert={!menuOpen}
       >
@@ -109,7 +102,7 @@ export default function Navbar() {
             <a href="tel:8776746366" className="overlay-phone">(877) 674-6366</a>
           </div>
         </div>
-      </motion.aside>
+      </aside>
     </>
   )
 }

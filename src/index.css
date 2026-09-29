@@ -277,10 +277,11 @@ body::after {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: var(--nav-h);
   display: flex; align-items: center;
-  transition: height 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+  transition: height 0.35s ease, background 0.35s ease, border-color 0.35s ease, transform 0.32s ease-in-out;
   background: transparent;
   border-bottom: 1px solid transparent;
 }
+.navbar.is-hidden { transform: translateY(-120px); }
 /* Height shrink on scroll */
 .navbar.scrolled { height: var(--nav-h-scrolled); }
 
@@ -335,7 +336,10 @@ body::after {
   background: rgba(29, 36, 45, 0.55);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
 }
+.nav-overlay-backdrop.is-open { opacity: 1; pointer-events: auto; }
 
 /* ── Overlay panel ── */
 .nav-overlay-panel {
@@ -345,7 +349,14 @@ body::after {
   border-left: 1px solid rgba(255,255,255,0.07);
   display: flex; flex-direction: column;
   overflow-y: auto;
+  opacity: 0; transform: translateX(40px); pointer-events: none;
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1), transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.nav-overlay-panel.is-open { opacity: 1; transform: translateX(0); pointer-events: auto; }
+
+/* Route change fade-in (replaces framer-motion's AnimatePresence) */
+@keyframes page-fade-in { from { opacity: 0; } to { opacity: 1; } }
+.page-fade { animation: page-fade-in 0.18s ease-in-out both; }
 
 /* Close ✕ button */
 .overlay-close-btn {

@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
@@ -67,14 +66,8 @@ function AppContent() {
       <ScrollProgress />
       <Cursor />
       <Navbar />
-      <AnimatePresence mode="wait">
-        <motion.main
-          key={location.pathname}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.18, ease: 'easeInOut' }}
-        >
+      {/* Keyed so each route change remounts <main> and replays the CSS fade-in */}
+      <main key={location.pathname} className="page-fade">
           <Suspense fallback={null}>
           <Routes location={location}>
             <Route path="/" element={<HomePage />} />
@@ -86,8 +79,7 @@ function AppContent() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           </Suspense>
-        </motion.main>
-      </AnimatePresence>
+      </main>
       <Footer />
     </>
   )
