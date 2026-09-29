@@ -5,6 +5,16 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# ── Security headers (mirrors public/.htaccess for staging) ──────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
 # ── Real routes → their own prerendered file ─────────────────────────────────
 # See docs/crawlability-prerendering-fix.md — npm run build now runs
 # scripts/prerender.mjs after vite build, so these paths exist as real files

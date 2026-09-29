@@ -105,7 +105,7 @@ export default function Process() {
                 style={{ transformOrigin: 'center top', willChange: 'transform' }}
               >
                 <div className="process-card-img-mobile">
-                  <img src={step.img} alt={step.title} loading="lazy" style={{ objectPosition: step.imgPosition || 'center' }} />
+                  <img src={step.img} alt={step.title} width="800" height="520" loading="lazy" style={{ objectPosition: step.imgPosition || 'center' }} />
                 </div>
 
                 <div className="process-card-body">
@@ -115,7 +115,7 @@ export default function Process() {
                   </div>
 
                   <div className="process-card-img-desktop">
-                    <img src={step.img} alt={step.title} loading="lazy" style={{ objectPosition: step.imgPosition || 'center' }} />
+                    <img src={step.img} alt={step.title} width="800" height="520" loading="lazy" style={{ objectPosition: step.imgPosition || 'center' }} />
                     <div className="process-card-img-fade" aria-hidden="true" />
                   </div>
                 </div>

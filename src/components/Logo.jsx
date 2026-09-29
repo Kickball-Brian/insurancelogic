@@ -12,5 +12,5 @@ const LOCKUPS = {
  */
 export default function Logo({ variant = 'dark', className = 'brand-logo-image' }) {
   const lockup = LOCKUPS[variant]
-  return <img src={lockup.src} alt={lockup.alt} className={className} />
+  return <img src={lockup.src} alt={lockup.alt} width="2000" height="383" className={className} />
 }

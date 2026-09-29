@@ -1,5 +1,14 @@
 import { useEffect } from 'react'
 
+const ORIGIN = 'https://insurancelogic.org'
+const CRUMB_NAMES = {
+  '/services': 'Services',
+  '/verticals': 'Verticals',
+  '/about-us': 'About Us',
+  '/compliance': 'Compliance',
+  '/contact': 'Contact',
+}
+
 export default function usePageMeta(title, description) {
   useEffect(() => {
     document.title = title
@@ -43,5 +52,26 @@ export default function usePageMeta(title, description) {
       document.head.appendChild(canonical)
     }
     canonical.href = `https://insurancelogic.org${window.location.pathname}`
+  
+    // BreadcrumbList — inner pages only. Replaced (not appended) on each
+    // navigation so a client-side route change never leaves a stale one, and
+    // present at prerender time so it lands in the static HTML.
+    const old = document.getElementById('ld-breadcrumb')
+    if (old) old.remove()
+    const name = CRUMB_NAMES[window.location.pathname]
+    if (name) {
+      const ld = document.createElement('script')
+      ld.type = 'application/ld+json'
+      ld.id = 'ld-breadcrumb'
+      ld.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${ORIGIN}/` },
+          { '@type': 'ListItem', position: 2, name, item: `${ORIGIN}${window.location.pathname}` },
+        ],
+      })
+      document.head.appendChild(ld)
+    }
   }, [title, description])
 }

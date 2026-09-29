@@ -52,6 +52,16 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 <IfModule mod_headers.c>
+  # Security headers (all responses). HSTS is scoped to this host only (no
+  # includeSubDomains/preload) so it can't lock in other subdomains.
+  # No Content-Security-Policy yet: GTM and the LeadLogic form script need a
+  # tested allowlist first — add it in Report-Only mode before enforcing.
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
   # Versioned assets — immutable (Vite content-hashed filenames)
   <FilesMatch "\.(js|css)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
