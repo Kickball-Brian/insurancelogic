@@ -83,6 +83,14 @@ export default function Footer() {
           </div>
 
           <div className="footer-pill-group">
+            <span className="footer-pill-label">Legal</span>
+            <div className="footer-pills">
+              <Link to="/privacy-policy" className="footer-pill">Privacy Policy</Link>
+              <Link to="/terms-conditions" className="footer-pill">Terms &amp; Conditions</Link>
+            </div>
+          </div>
+
+          <div className="footer-pill-group">
             <span className="footer-pill-label">Follow</span>
             <div className="footer-pills">
               <a href="https://www.linkedin.com/company/email-agency/" target="_blank" rel="noreferrer" className="footer-pill">LinkedIn</a>
@@ -94,6 +102,8 @@ export default function Footer() {
         <div className="footer-bottom">
           <p>© {year} InsuranceLogic. A subsidiary of Email Agency Inc. All rights reserved.</p>
           <div className="footer-legal">
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms-conditions">Terms &amp; Conditions</Link>
             <a href="https://www.linkedin.com/company/email-agency/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a href="https://www.facebook.com/EmailAgencyInc" target="_blank" rel="noreferrer">Facebook</a>
           </div>

@@ -19,6 +19,8 @@ const VerticalsPage = lazy(() => import('./pages/VerticalsPage'))
 const TeamPage = lazy(() => import('./pages/TeamPage'))
 const CompliancePage = lazy(() => import('./pages/CompliancePage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'))
+const TermsPage = lazy(() => import('./pages/TermsPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 gsap.registerPlugin(ScrollTrigger)
@@ -76,6 +78,8 @@ function AppContent() {
             <Route path="/about-us" element={<TeamPage />} />
             <Route path="/compliance" element={<CompliancePage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-conditions" element={<TermsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           </Suspense>

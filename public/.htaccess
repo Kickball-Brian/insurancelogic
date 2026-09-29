@@ -16,6 +16,8 @@ RewriteRule ^verticals/?$ /prerendered/verticals.html [L]
 RewriteRule ^about-us/?$ /prerendered/about-us.html [L]
 RewriteRule ^compliance/?$ /prerendered/compliance.html [L]
 RewriteRule ^contact/?$ /prerendered/contact.html [L]
+RewriteRule ^privacy-policy/?$ /prerendered/privacy-policy.html [L]
+RewriteRule ^terms-conditions/?$ /prerendered/terms-conditions.html [L]
 
 # Anything not matched above (a typo, an old link, a bot probing random
 # paths) hits Apache's normal file-not-found handling. ErrorDocument swaps

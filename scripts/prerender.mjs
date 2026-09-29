@@ -25,6 +25,8 @@ const routes = [
   '/about-us',
   '/compliance',
   '/contact',
+  '/privacy-policy',
+  '/terms-conditions',
 ]
 
 // This project has no GTM/PostHog wired in yet. If analytics gets added

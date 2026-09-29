@@ -7,6 +7,8 @@ const CRUMB_NAMES = {
   '/about-us': 'About Us',
   '/compliance': 'Compliance',
   '/contact': 'Contact',
+  '/privacy-policy': 'Privacy Policy',
+  '/terms-conditions': 'Terms & Conditions',
 }
 
 export default function usePageMeta(title, description) {

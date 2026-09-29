@@ -42,6 +42,14 @@
   from = "/contact"
   to = "/prerendered/contact.html"
   status = 200
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/prerendered/privacy-policy.html"
+  status = 200
+[[redirects]]
+  from = "/terms-conditions"
+  to = "/prerendered/terms-conditions.html"
+  status = 200
 
 # ── SPA fallback for everything else ─────────────────────────────────────────
 # / needs no entry — dist/index.html IS the prerendered homepage after the
