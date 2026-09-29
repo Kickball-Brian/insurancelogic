@@ -75,7 +75,7 @@ export default function TeamPage() {
             <div className="about-story-text">
               <span className="section-label">Our Story</span>
               <h2 className="section-title">
-                Proven Infrastructure,<br />
+                Proven Infrastructure, <br />
                 <span className="gradient-text">New Focus</span>
               </h2>
               <p style={{ color: 'var(--text-soft)', lineHeight: 1.8, fontSize: 17, marginBottom: 20 }}>
@@ -109,7 +109,7 @@ export default function TeamPage() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="section-label">What We Run</span>
-            <h2 className="section-title">One Platform,<br /><span className="gradient-text">Every Capability</span></h2>
+            <h2 className="section-title">One Platform, <br /><span className="gradient-text">Every Capability</span></h2>
           </div>
           <div className="about-capabilities">
             {capabilities.map((c) => (
@@ -127,7 +127,7 @@ export default function TeamPage() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="section-label">Leadership</span>
-            <h2 className="section-title">Meet the<br /><span className="gradient-text">InsuranceLogic Team</span></h2>
+            <h2 className="section-title">Meet the <br /><span className="gradient-text">InsuranceLogic Team</span></h2>
           </div>
           <div className="team-grid">
             {team.map((m) => (

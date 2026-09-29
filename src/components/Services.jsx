@@ -114,7 +114,7 @@ export default function Services() {
       <div className="container">
         <div className="services-header">
           <h2 className="section-title">
-            A Full-Stack Marketing<br />
+            A Full-Stack Marketing <br />
             <span className="gradient-text">Platform for Agents</span>
           </h2>
         </div>

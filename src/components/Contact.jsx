@@ -24,7 +24,7 @@ export default function Contact() {
       <div className="container">
         <div className="contact-inner">
           <h2 className="section-title">
-            Ready to Put Your<br />
+            Ready to Put Your <br />
             <span className="gradient-text">Budget to Work?</span>
           </h2>
           <p className="section-subtitle">

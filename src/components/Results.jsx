@@ -78,7 +78,7 @@ export default function Results() {
       <div className="container">
         <div className="results-header" style={{ marginBottom: 56, textAlign: 'center' }}>
           <h2 className="section-title">
-            One Platform, Built for<br />
+            One Platform, Built for <br />
             <span className="gradient-text">Every Product Line</span>
           </h2>
         </div>

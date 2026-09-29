@@ -82,7 +82,7 @@ export default function Process() {
       <div className="container">
         <div className="process-header">
           <h2 className="section-title">
-            From First Click to<br />
+            From First Click to <br />
             <span className="gradient-text">Booked Business</span>
           </h2>
           <p className="section-subtitle" style={{ margin: '0 auto' }}>

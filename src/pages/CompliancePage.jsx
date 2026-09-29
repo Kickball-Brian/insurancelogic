@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -101,11 +101,15 @@ export default function CompliancePage() {
             <span className="section-label">Compliance framework</span>
             <h2 className="section-title cf-headline">
               {['Built', 'in,', 'not', 'bolted', 'on.'].map((word, wi) => (
-                <span key={wi} style={{ display: 'inline-block', whiteSpace: 'nowrap', marginRight: '0.28em' }}>
-                  {word.split('').map((ch, ci) => (
-                    <span key={ci} className="cf-char" style={{ display: 'inline-block' }}>{ch}</span>
-                  ))}
-                </span>
+                <Fragment key={wi}>
+                  {/* zero-size space so plain-text extraction keeps word breaks; the visible gap is marginRight */}
+                  {wi > 0 && <span style={{ fontSize: 0 }}>{' '}</span>}
+                  <span style={{ display: 'inline-block', whiteSpace: 'nowrap', marginRight: '0.28em' }}>
+                    {word.split('').map((ch, ci) => (
+                      <span key={ci} className="cf-char" style={{ display: 'inline-block' }}>{ch}</span>
+                    ))}
+                  </span>
+                </Fragment>
               ))}
             </h2>
             <p className="cf-lead">
