@@ -33,7 +33,7 @@ export default function usePageMeta(title, description) {
     // shipped with a live og:url of http://localhost:4321/), breaking
     // every social share (Facebook/LinkedIn/Slack/X unfurls). Same
     // pattern the canonical link below already uses for the same reason.
-    og('og:url', `https://insurancelogic.com${window.location.pathname}`)
+    og('og:url', `https://insurancelogic.org${window.location.pathname}`)
 
     // Canonical — update per-page so Google doesn't treat all pages as homepage duplicates
     let canonical = document.querySelector('link[rel="canonical"]')
@@ -42,6 +42,6 @@ export default function usePageMeta(title, description) {
       canonical.rel = 'canonical'
       document.head.appendChild(canonical)
     }
-    canonical.href = `https://insurancelogic.com${window.location.pathname}`
+    canonical.href = `https://insurancelogic.org${window.location.pathname}`
   }, [title, description])
 }

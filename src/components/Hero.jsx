@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import TriangleGrid from './TriangleGrid'
 import MagneticBtn from './MagneticBtn'
@@ -70,7 +70,10 @@ export default function Hero() {
         <div className="hero-content">
           <h1>
             {WORDS.map((word, wi) => (
-              <span key={wi} className="hero-word" style={{ display: 'inline-block', marginRight: '0.28em', whiteSpace: 'nowrap' }}>
+              <Fragment key={wi}>
+              {/* zero-size space so text extractors (crawlers, screen readers) see word breaks; visual gap comes from marginRight */}
+              {wi > 0 && <span style={{ fontSize: 0 }}>{' '}</span>}
+              <span className="hero-word" style={{ display: 'inline-block', marginRight: '0.28em', whiteSpace: 'nowrap' }}>
                 {word.split('').map((ch, ci) => {
                   const delay = 0.32 + charCount * 0.035
                   charCount++
@@ -83,6 +86,7 @@ export default function Hero() {
                   )
                 })}
               </span>
+              </Fragment>
             ))}
           </h1>
 

@@ -156,7 +156,8 @@ async function main() {
       // matching route renders it) and ship that as its own file instead.
       const notFoundHtml = await capture('/__prerender_404_check__')
       const notFoundPath = join(distDir, '404.html')
-      await writeFile(notFoundPath, notFoundHtml)
+      // The 404 page must never be indexed, whatever the site-wide robots meta says.
+      await writeFile(notFoundPath, notFoundHtml.replace(/<meta name="robots"[^>]*>/, '<meta name="robots" content="noindex, follow">'))
       console.log(`[prerender] 404 -> dist/404.html (${(notFoundHtml.length / 1024).toFixed(0)}KB)`)
     } finally {
       await browser.close()

@@ -36,11 +36,11 @@ npm run dev
 - **Contact form**: No live campaign/affiliate code exists for this vertical
   yet, so `/contact` shows a mailto CTA instead of the embedded lead form
   used on lawlogic.law. Wire up the real form once a campaign code exists.
-- **Domain & indexing**: `insurancelogic.com` is a placeholder in
-  `index.html` / `usePageMeta.js` / `netlify.toml`. The whole site is
-  currently `noindex, nofollow` (see `netlify.toml` and
-  `public/robots.txt`) until it's ready to go live — update both when
-  cutting over to production.
+- **Domain & indexing**: `insurancelogic.org` is the production domain in
+  `index.html` / `usePageMeta.js` / `public/robots.txt` / `public/sitemap.xml`. The site is
+  now indexable (`index, follow` meta in `index.html`, open
+  `public/robots.txt`, `public/sitemap.xml`). If the domain
+  ever changes, update those files.
 - **Analytics**: PostHog was intentionally left out (no InsuranceLogic
   project key yet). Add `posthog-js` back in `src/main.jsx` / `src/App.jsx`
   the same way `lawlogic-rework` does once a key exists.
