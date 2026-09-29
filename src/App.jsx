@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { gsap } from 'gsap'
@@ -10,13 +10,17 @@ import Footer from './components/Footer'
 import Cursor from './components/Cursor'
 import ScrollProgress from './components/ScrollProgress'
 
+// Home ships in the entry bundle (most landings); every other route is its
+// own chunk. Each prerendered HTML file gets a modulepreload for its chunk
+// (Vite injects it at runtime, and scripts/prerender.mjs captures the DOM),
+// so the chunk downloads in parallel with the entry instead of after it.
 import HomePage from './pages/HomePage'
-import ServicesPage from './pages/ServicesPage'
-import VerticalsPage from './pages/VerticalsPage'
-import TeamPage from './pages/TeamPage'
-import CompliancePage from './pages/CompliancePage'
-import ContactPage from './pages/ContactPage'
-import NotFoundPage from './pages/NotFoundPage'
+const ServicesPage = lazy(() => import('./pages/ServicesPage'))
+const VerticalsPage = lazy(() => import('./pages/VerticalsPage'))
+const TeamPage = lazy(() => import('./pages/TeamPage'))
+const CompliancePage = lazy(() => import('./pages/CompliancePage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -71,6 +75,7 @@ function AppContent() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18, ease: 'easeInOut' }}
         >
+          <Suspense fallback={null}>
           <Routes location={location}>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
@@ -80,6 +85,7 @@ function AppContent() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
+          </Suspense>
         </motion.main>
       </AnimatePresence>
       <Footer />
